@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog | Chedders Computer – chedderscomputer.store</title>
+    <meta name="description" content="Laptop buying guides, tech tips, brand comparisons, and news from the Chedders Computer team.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/style.css" rel="stylesheet">
+
+    <style>
+    /* ── Blog page extras ── */
+
+    /* Featured post */
+    .featured-post {
+        background: var(--cc-card);
+        border: 1px solid var(--cc-border);
+        border-radius: 24px; overflow: hidden;
+        display: grid; grid-template-columns: 1fr 1fr;
+        transition: all .3s;
+    }
+    .featured-post:hover { border-color: rgba(29,110,245,.4); box-shadow: 0 0 40px rgba(29,110,245,.1); }
+    @media (max-width: 767.98px) { .featured-post { grid-template-columns: 1fr; } }
+
+    .featured-img { position: relative; overflow: hidden; min-height: 300px; }
+    .featured-img img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s; }
+    .featured-post:hover .featured-img img { transform: scale(1.04); }
+    .post-category {
+        position: absolute; top: 16px; left: 16px;
+        background: var(--cc-grad);
+        color: #fff; padding: 4px 14px; border-radius: 50px;
+        font-size: .72rem; font-weight: 700; text-transform: uppercase;
+    }
+    .featured-content { padding: 40px 36px; display: flex; flex-direction: column; justify-content: center; }
+    @media (max-width: 767.98px) { .featured-content { padding: 28px 24px; } }
+    .post-date { color: var(--cc-muted); font-size: .8rem; display: flex; align-items: center; gap: 6px; margin-bottom: 14px; }
+    .featured-content h2 {
+        font-family: 'Playfair Display', serif;
+        font-size: clamp(1.2rem, 2.5vw, 1.6rem); font-weight: 700;
+        color: var(--cc-white); margin-bottom: 14px; line-height: 1.3;
+    }
+    .featured-content > p { color: var(--cc-muted); font-size: .92rem; line-height: 1.8; margin-bottom: 20px; }
+    .post-meta { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+    .post-author { display: flex; align-items: center; gap: 8px; }
+    .author-avatar {
+        width: 34px; height: 34px; border-radius: 50%;
+        background: var(--cc-grad);
+        display: flex; align-items: center; justify-content: center;
+        color: #fff; font-weight: 700; font-size: .72rem;
+    }
+    .post-author span { color: var(--cc-muted); font-size: .84rem; }
+    .post-read-time { color: var(--cc-muted); font-size: .82rem; display: flex; align-items: center; gap: 5px; }
+
+    /* Filter pills */
+    .blog-filter-btn {
+        background: transparent;
+        border: 1px solid var(--cc-border);
+        color: var(--cc-muted);
+        border-radius: 50px; padding: 7px 18px;
+        font-size: .82rem; font-weight: 600;
+        cursor: pointer; transition: all .2s;
+    }
+    .blog-filter-btn:hover,
+    .blog-filter-btn.active {
+        background: var(--cc-blue); border-color: var(--cc-blue); color: #fff;
+    }
+
+    /* Blog cards */
+    .blog-card {
+        background: var(--cc-card);
+        border: 1px solid var(--cc-border);
+        border-radius: var(--cc-radius);
+        overflow: hidden; height: 100%;
+        display: flex; flex-direction: column;
+        transition: all .3s;
+    }
+    .blog-card:hover {
+        border-color: rgba(29,110,245,.4);
+        transform: translateY(-4px);
+        box-shadow: 0 0 30px rgba(29,110,245,.1);
+    }
+    .blog-img-wrap { height: 190px; overflow: hidden; position: relative; }
+    .blog-img-wrap img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s; }
+    .blog-card:hover .blog-img-wrap img { transform: scale(1.06); }
+    .blog-tag {
+        position: absolute; top: 10px; left: 10px;
+        background: var(--cc-grad);
+        color: #fff; padding: 3px 11px; border-radius: 50px;
+        font-size: .68rem; font-weight: 700;
+    }
+    .blog-body { padding: 22px; display: flex; flex-direction: column; flex-grow: 1; }
+    .blog-meta { display: flex; gap: 14px; margin-bottom: 10px; }
+    .blog-meta span { color: var(--cc-muted); font-size: .76rem; display: flex; align-items: center; gap: 5px; }
+    .blog-body h3 {
+        font-family: 'Playfair Display', serif;
+        font-size: .98rem; font-weight: 700; color: var(--cc-white);
+        line-height: 1.4; margin-bottom: 10px;
+    }
+    .blog-body p { color: var(--cc-muted); font-size: .84rem; line-height: 1.75; flex-grow: 1; margin-bottom: 16px; }
+    .blog-footer { display: flex; align-items: center; justify-content: space-between; margin-top: auto; }
+    .blog-author { display: flex; align-items: center; gap: 8px; }
+    .blog-avatar {
+        width: 30px; height: 30px; border-radius: 50%;
+        background: var(--cc-grad);
+        display: flex; align-items: center; justify-content: center;
+        color: #fff; font-weight: 700; font-size: .68rem;
+    }
+    .blog-author span { color: var(--cc-muted); font-size: .8rem; }
+    .read-more {
+        color: var(--cc-blue-lt); font-size: .82rem; font-weight: 600;
+        display: flex; align-items: center; gap: 5px;
+        transition: color .2s; white-space: nowrap;
+    }
+    .read-more:hover { color: var(--cc-cyan); }
+
+    /* Newsletter */
+    .newsletter-section {
+        background: linear-gradient(135deg, #0f2d6e 0%, #0a1f4e 100%);
+        padding: 64px 0; position: relative; overflow: hidden;
+    }
+    .newsletter-section::before {
+        content: '';
+        position: absolute; inset: 0;
+        background: radial-gradient(ellipse at center, rgba(29,110,245,.18) 0%, transparent 65%);
+    }
+    .newsletter-section h3 {
+        font-family: 'Playfair Display', serif;
+        font-size: 1.5rem; font-weight: 700; color: var(--cc-white); margin-bottom: 8px;
+    }
+    .newsletter-section p { color: rgba(255,255,255,.7); font-size: .92rem; margin: 0; }
+    .newsletter-form { display: flex; gap: 10px; flex-wrap: wrap; }
+    .newsletter-form input {
+        flex: 1; min-width: 220px;
+        background: rgba(255,255,255,.08);
+        border: 1px solid rgba(255,255,255,.2);
+        color: #fff; border-radius: var(--cc-radius-sm);
+        padding: 11px 18px; font-size: .9rem;
+        outline: none; transition: border-color .2s;
+        font-family: 'DM Sans', sans-serif;
+    }
+    .newsletter-form input::placeholder { color: rgba(255,255,255,.45); }
+    .newsletter-form input:focus { border-color: var(--cc-blue); }
+    </style>
+</head>
+<body>
+
+<!-- LOADER -->
+<div id="cc-loader">
+    <div class="loader-brand mb-3">Chedders<span>Computer</span></div>
+    <div class="loader-dots">
+        <div class="loader-dot"></div>
+        <div class="loader-dot"></div>
+        <div class="loader-dot"></div>
+    </div>
+</div>
+
+<!-- ============================================================
+     TOPBAR
+============================================================ -->
+<div class="cc-topbar d-none d-md-block">
+    <div class="container-xxl">
+        <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
+            <div class="d-flex gap-4 flex-wrap">
+                <span><i class="fas fa-map-marker-alt topbar-icon me-1"></i> 10 simbiat, abiola way, computer village ikeja beside zenith bank, Lagos Nigeria</span>
+                <span><i class="fas fa-phone-alt topbar-icon me-1"></i><a href="tel:+2349160006406">+234 916 000 6406</a></span>
+                <span><i class="fas fa-envelope topbar-icon me-1"></i><a href="mailto:support@chedderscomputer.store">support@chedderscomputer.store</a></span>
+            </div>
+            <div class="topbar-social d-flex gap-2">
+                <a href="https://www.facebook.com/share/17CfgRLadA/" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.instagram.com/chedderscomputer?igsh=Z2xjYmQ4OTV1MnI2" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" aria-label="Tiktok"><i class="fab fa-tiktok"></i></a>
+                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- NAVBAR -->
+<nav class="cc-navbar navbar navbar-expand-lg">
+    <div class="container-xxl">
+        <a href="../index.html" class="navbar-brand d-flex align-items-center gap-2 me-lg-4">
+            <div class="brand-icon"><i class="fas fa-laptop"></i></div>
+            <div>
+                <div class="brand-name">Chedders<span>Computer</span></div>
+                <div class="brand-domain">chedderscomputer.store</div>
+            </div>
+        </a>
+        <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#ccNav" aria-controls="ccNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="toggler-bar"></span><span class="toggler-bar"></span><span class="toggler-bar"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="ccNav">
+            <ul class="navbar-nav mx-auto gap-1">
+                <li class="nav-item"><a href="../index.html"  class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="about.html"    class="nav-link">About</a></li>
+                <li class="nav-item"><a href="services.html" class="nav-link">Services</a></li>
+                <li class="nav-item"><a href="blog.html"     class="nav-link active">Blog</a></li>
+                <li class="nav-item"><a href="contact.html"  class="nav-link">Contact</a></li>
+            </ul>
+            <div class="d-flex align-items-center gap-3 mt-3 mt-lg-0">
+                <a href="shop.html" class="btn-cc-primary"><i class="fas fa-laptop"></i> Shop Now</a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+    <div class="container-xxl">
+        <h1>Laptop Insights &amp; Tips</h1>
+        <p>Guides, comparisons, and advice to help you make the smartest tech decisions.</p>
+        <div class="cc-breadcrumb">
+            <a href="../index.html">Home</a>
+            <i class="fas fa-chevron-right" style="font-size:.6rem"></i>
+            <span>Blog</span>
+        </div>
+    </div>
+</div>
+
+<!-- FEATURED POST -->
+<section class="cc-section">
+    <div class="container-xxl">
+        <div class="row mb-4">
+            <div class="col reveal">
+                <span class="section-tag d-inline-flex mb-0"><i class="fas fa-bookmark me-2"></i>Featured</span>
+            </div>
+        </div>
+        <div class="featured-post reveal">
+            <div class="featured-img">
+                <img src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=800&q=80" alt="MacBook Pro Guide">
+                <span class="post-category">Buying Guide</span>
+            </div>
+            <div class="featured-content">
+                <div class="post-date"><i class="fas fa-calendar"></i> December 10, 2025</div>
+                <h2>MacBook Pro M3 Max vs M3 Pro: Which Should You Buy in 2025?</h2>
+                <p>Apple's M3 chip lineup has raised the bar again. But with two powerful configurations available, choosing between the M3 Max and M3 Pro can be tricky. We break down every key difference to help you decide which is the right investment for your workflow.</p>
+                <div class="post-meta mb-3">
+                    <div class="post-author">
+                        <div class="author-avatar">FO</div>
+                        <span>Femi Obi</span>
+                    </div>
+                    <span class="post-read-time"><i class="fas fa-clock"></i> 8 min read</span>
+                </div>
+                <a href="#" class="btn-cc-primary" style="align-self:flex-start">
+                    <i class="fas fa-arrow-right"></i> Read Article
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- BLOG GRID -->
+<section class="cc-section cc-section-alt">
+    <div class="container-xxl">
+        <div class="row align-items-center mb-4">
+            <div class="col reveal">
+                <span class="section-tag d-inline-flex mb-2"><i class="fas fa-newspaper me-2"></i>Latest Posts</span>
+                <h2 class="section-title mb-0">Fresh From <span>The Blog</span></h2>
+            </div>
+        </div>
+
+        <!-- Filter pills -->
+        <div class="d-flex flex-wrap gap-2 mb-5 reveal">
+            <button class="blog-filter-btn active" data-filter="all">All Posts</button>
+            <button class="blog-filter-btn" data-filter="guides">Buying Guides</button>
+            <button class="blog-filter-btn" data-filter="tips">Tips &amp; Tricks</button>
+            <button class="blog-filter-btn" data-filter="news">Tech News</button>
+            <button class="blog-filter-btn" data-filter="comparison">Comparisons</button>
+        </div>
+
+        <div class="row g-4" id="blogGrid">
+            <!-- Rendered by JS below -->
+        </div>
+    </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section class="newsletter-section">
+    <div class="container-xxl position-relative" style="z-index:1">
+        <div class="row align-items-center gy-4">
+            <div class="col-lg-6">
+                <h3><i class="fas fa-envelope me-2"></i>Stay in the Loop</h3>
+                <p>Get laptop buying guides, deals, and tech tips delivered to your inbox.</p>
+            </div>
+            <div class="col-lg-6">
+                <form class="newsletter-form" onsubmit="event.preventDefault();window.showToast&&showToast('Subscribed successfully!');this.reset()">
+                    <input type="email" placeholder="your@email.com" required>
+                    <button type="submit" class="btn-cc-primary">
+                        <i class="fas fa-arrow-right"></i> Subscribe
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================
+     FOOTER
+============================================================ -->
+<footer class="cc-footer pt-5">
+    <div class="container-xxl">
+        <div class="row gy-5">
+            <!-- Brand -->
+            <div class="col-lg-4">
+                <div class="d-flex align-items-center gap-2 mb-3">
+                    <div class="brand-icon"><i class="fas fa-laptop"></i></div>
+                    <div>
+                        <div class="footer-brand-name">Chedders<span>Computer</span></div>
+                        <div class="brand-domain">chedderscomputer.store</div>
+                    </div>
+                </div>
+                <p class="footer-about mb-3">
+                    Lagos's trusted destination for 100% brand-new, sealed laptops. From the heart of Lagos Island,
+                    we deliver quality technology to your doorstep across Nigeria.
+                </p>
+                <div class="footer-social d-flex gap-2">
+                    <a href="https://www.facebook.com/share/17CfgRLadA/" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/chedderscomputer?igsh=Z2xjYmQ4OTV1MnI2" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="Tiktok"><i class="fab fa-tiktok"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            <!-- Quick Links -->
+            <div class="col-6 col-lg-2">
+                <h6 class="footer-heading">Quick Links</h6>
+                <ul class="footer-links">
+                    <li><a href="index.html"><i class="fas fa-angle-right"></i> Home</a></li>
+                    <li><a href="pages/about.html"><i class="fas fa-angle-right"></i> About Us</a></li>
+                    <li><a href="pages/services.html"><i class="fas fa-angle-right"></i> Services</a></li>
+                    <li><a href="pages/shop.html"><i class="fas fa-angle-right"></i> Shop</a></li>
+                    <li><a href="pages/blog.html"><i class="fas fa-angle-right"></i> Blog</a></li>
+                    <li><a href="pages/contact.html"><i class="fas fa-angle-right"></i> Contact</a></li>
+                </ul>
+            </div>
+            <!-- Help -->
+            <div class="col-6 col-lg-2">
+                <h6 class="footer-heading">Help</h6>
+                <ul class="footer-links">
+                    <li><a href="pages/faqs.html"><i class="fas fa-angle-right"></i> FAQs</a></li>
+                    <li><a href="pages/shippingpolicy.html"><i class="fas fa-angle-right"></i> Shipping Policy</a></li>
+                    <li><a href="pages/returnpolicy.html"><i class="fas fa-angle-right"></i> Return Policy</a></li>
+                    <li><a href="pages/warranty.html"><i class="fas fa-angle-right"></i> Warranty</a></li>
+                    <li><a href="pages/privacypolicy.html"><i class="fas fa-angle-right"></i> Privacy Policy</a></li>
+                    <li><a href="pages/termsofuse.html"><i class="fas fa-angle-right"></i> Terms of Use</a></li>
+                </ul>
+            </div>
+            <!-- Contact -->
+            <div class="col-lg-4">
+                <h6 class="footer-heading">Contact Us</h6>
+                <div class="footer-contact-item"><i class="fas fa-map-marker-alt"></i><span>No 10 simbiat, abiola way, computer village ikeja beside zenith bank, Lagos Nigeria</span></div>
+                <div class="footer-contact-item"><i class="fas fa-phone-alt"></i><a href="tel:+2349160006406">+234 916 000 6406</a></div>
+                <div class="footer-contact-item"><i class="fas fa-envelope"></i><a href="mailto:hello@chedderscomputer.store">support@chedderscomputer.store</a></div>
+                <div class="footer-contact-item"><i class="fas fa-clock"></i><span>Mon – Sat: 9am – 7pm</span></div>
+            </div>
+        </div>
+
+        <hr style="border-color:var(--cc-border);margin-top:3rem">
+        <div class="footer-bottom d-flex flex-column flex-sm-row align-items-center justify-content-between gap-2">
+            <div>© 2025 <a href="index.html">Chedders Computer</a>. All rights reserved. | chedderscomputer.store</div>
+            <div><i class="fas fa-lock me-1"></i> Secure Shopping</div>
+        </div>
+    </div>
+</footer>
+
+<!-- ============================================================
+     whatsapp-float
+============================================================ -->
+<a href="https://wa.me/2349060006406?text=Hello%20Chedders%20Computers,%20I%20want%20to%20make%20an%20enquiry."
+   target="_blank"
+   class="whatsapp-float">
+   <i class="fab fa-whatsapp"></i>
+</a>
+
+<button class="back-to-top" id="backToTop" aria-label="Back to top">
+    <i class="fas fa-arrow-up"></i>
+</button>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../js/main.js"></script>
+<script>
+/* ── Blog posts data & rendering ── */
+var blogPosts = [
+    { id:1, title:'5 Things to Check Before Buying a Laptop in Nigeria', category:'guides', date:'Dec 5, 2025', img:'https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=400&q=80', excerpt:'Avoid the most common mistakes. Here\'s exactly what to look for when shopping for a laptop in Lagos.', author:'Adaeze N.', read:'6 min', tag:'Buying Guide' },
+    { id:2, title:'Dell XPS vs HP Spectre: Business Laptop Showdown', category:'comparison', date:'Nov 28, 2025', img:'https://images.unsplash.com/photo-1593642632823-8f785ba67e45?w=400&q=80', excerpt:'Two premium business laptops go head-to-head. We compare performance, build quality, battery, and value.', author:'Femi B.', read:'10 min', tag:'Comparison' },
+    { id:3, title:'Why You Should Never Buy a Refurbished Laptop', category:'tips', date:'Nov 20, 2025', img:'https://images.unsplash.com/photo-1525547719571-a2d4ac8945e2?w=400&q=80', excerpt:'The risks are real. From voided warranties to hidden defects, refurbished laptops can cost you more in the long run.', author:'Chukwuemeka O.', read:'5 min', tag:'Tips & Tricks' },
+    { id:4, title:'ASUS ROG Zephyrus G14: Is It Still the Best Gaming Laptop?', category:'comparison', date:'Nov 15, 2025', img:'https://images.unsplash.com/photo-1603302576837-37561b2e2302?w=400&q=80', excerpt:'The Zephyrus G14 has been a fan favourite for years. We check if the 2024 version still earns its reputation.', author:'Femi B.', read:'9 min', tag:'Comparison' },
+    { id:5, title:'How to Choose the Right Laptop for University in Nigeria', category:'guides', date:'Nov 8, 2025', img:'https://images.unsplash.com/photo-1484788984921-03950022c9ef?w=400&q=80', excerpt:'A practical guide for students: balancing budget, battery life, portability, and performance for campus life.', author:'Adaeze N.', read:'7 min', tag:'Buying Guide' },
+    { id:6, title:'What Apple Silicon Means for Nigerian Buyers in 2025', category:'news', date:'Oct 30, 2025', img:'https://images.unsplash.com/photo-1611186871525-3e97c64a9601?w=400&q=80', excerpt:"Apple's M-series chips have changed everything. Here's how it impacts pricing, availability, and performance for Nigerian buyers.", author:'Chukwuemeka O.', read:'6 min', tag:'Tech News' }
+];
+
+function initials(name) {
+    return name.split(' ').map(function(w){ return w[0]; }).join('');
+}
+
+function renderBlog(posts) {
+    var grid = document.getElementById('blogGrid');
+    if (!grid) return;
+    grid.innerHTML = posts.map(function(p) {
+        return '<div class="col-md-6 col-lg-4 reveal blog-card-wrap" data-category="' + p.category + '">' +
+            '<div class="blog-card">' +
+                '<div class="blog-img-wrap">' +
+                    '<img src="' + p.img + '" alt="' + p.title + '" loading="lazy">' +
+                    '<span class="blog-tag">' + p.tag + '</span>' +
+                '</div>' +
+                '<div class="blog-body">' +
+                    '<div class="blog-meta">' +
+                        '<span><i class="fas fa-calendar"></i> ' + p.date + '</span>' +
+                        '<span><i class="fas fa-clock"></i> ' + p.read + ' read</span>' +
+                    '</div>' +
+                    '<h3>' + p.title + '</h3>' +
+                    '<p>' + p.excerpt + '</p>' +
+                    '<div class="blog-footer">' +
+                        '<div class="blog-author">' +
+                            '<div class="blog-avatar">' + initials(p.author) + '</div>' +
+                            '<span>' + p.author + '</span>' +
+                        '</div>' +
+                        '<a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>' +
+                    '</div>' +
+                '</div>' +
+            '</div>' +
+        '</div>';
+    }).join('');
+
+    /* trigger reveal on newly created cards */
+    grid.querySelectorAll('.reveal').forEach(function(el) {
+        if (el.getBoundingClientRect().top < window.innerHeight) {
+            el.classList.add('revealed');
+        }
+    });
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    renderBlog(blogPosts);
+
+    /* Filter buttons */
+    document.querySelectorAll('.blog-filter-btn').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+            document.querySelectorAll('.blog-filter-btn').forEach(function(b){ b.classList.remove('active'); });
+            this.classList.add('active');
+            var filter = this.dataset.filter;
+            var filtered = filter === 'all' ? blogPosts : blogPosts.filter(function(p){ return p.category === filter; });
+            renderBlog(filtered);
+        });
+    });
+});
+</script>
+</body>
+</html>

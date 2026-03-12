@@ -1,0 +1,1244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chedders Store Admin</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+<style>
+/* ── DESIGN TOKENS ── */
+:root {
+  --bg:        #0a0c10;
+  --surface:   #111318;
+  --surface2:  #181b22;
+  --border:    #23262f;
+  --accent:    #e8ff3b;
+  --accent2:   #3bffcb;
+  --red:       #ff4757;
+  --text:      #e8eaf0;
+  --muted:     #6b7280;
+  --font-ui:   'Syne', sans-serif;
+  --font-mono: 'Space Mono', monospace;
+  --radius:    8px;
+  --trans:     all .18s ease;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-ui);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ── LOGIN SCREEN ── */
+#loginScreen {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg);
+  position: relative;
+  overflow: hidden;
+}
+#loginScreen::before {
+  content: '';
+  position: absolute;
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(232,255,59,.07) 0%, transparent 70%);
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+.login-box {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 48px 40px;
+  width: 380px;
+  max-width: 95vw;
+  position: relative;
+  z-index: 1;
+}
+.login-logo {
+  text-align: center;
+  margin-bottom: 32px;
+}
+.login-logo .mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px; height: 56px;
+  background: var(--accent);
+  border-radius: 14px;
+  margin-bottom: 14px;
+}
+.login-logo .mark i { font-size: 1.4rem; color: #000; }
+.login-logo h1 {
+  font-size: 1.4rem;
+  font-weight: 800;
+  letter-spacing: -.02em;
+  color: var(--text);
+}
+.login-logo h1 span { color: var(--accent); }
+.login-logo p {
+  font-size: .78rem;
+  color: var(--muted);
+  font-family: var(--font-mono);
+  margin-top: 4px;
+}
+.login-label {
+  display: block;
+  font-size: .72rem;
+  font-weight: 600;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+.login-input {
+  width: 100%;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-size: .95rem;
+  padding: 12px 16px;
+  outline: none;
+  transition: var(--trans);
+  margin-bottom: 20px;
+}
+.login-input:focus { border-color: var(--accent); }
+.btn-login {
+  width: 100%;
+  background: var(--accent);
+  color: #000;
+  font-family: var(--font-ui);
+  font-weight: 700;
+  font-size: .95rem;
+  letter-spacing: .04em;
+  border: none;
+  border-radius: var(--radius);
+  padding: 13px;
+  cursor: pointer;
+  transition: var(--trans);
+}
+.btn-login:hover { background: #d4eb2a; transform: translateY(-1px); }
+.login-error {
+  background: rgba(255,71,87,.1);
+  border: 1px solid rgba(255,71,87,.3);
+  color: var(--red);
+  border-radius: var(--radius);
+  padding: 10px 14px;
+  font-size: .82rem;
+  text-align: center;
+  margin-top: 14px;
+  display: none;
+}
+.netlify-badge {
+  text-align: center;
+  margin-top: 20px;
+  font-size: .72rem;
+  color: var(--muted);
+  font-family: var(--font-mono);
+}
+.netlify-badge i { color: var(--accent2); margin-right: 4px; }
+
+/* ── ADMIN SHELL ── */
+#adminShell { display: none; min-height: 100vh; }
+
+/* HEADER */
+.adm-header {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 0 28px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.adm-brand {
+  font-weight: 800;
+  font-size: 1.05rem;
+  letter-spacing: -.01em;
+}
+.adm-brand span { color: var(--accent); }
+.adm-header-right { display: flex; align-items: center; gap: 14px; }
+.adm-status {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: .72rem;
+  font-family: var(--font-mono);
+  color: var(--muted);
+}
+.status-dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--accent2);
+  animation: pulse 2s infinite;
+}
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.4} }
+.btn-logout {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--muted);
+  border-radius: 6px;
+  padding: 6px 14px;
+  font-family: var(--font-ui);
+  font-size: .78rem;
+  cursor: pointer;
+  transition: var(--trans);
+}
+.btn-logout:hover { border-color: var(--red); color: var(--red); }
+
+/* MAIN */
+.adm-main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 32px 24px;
+}
+
+/* STATS ROW */
+.stats-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 16px;
+  margin-bottom: 32px;
+}
+.stat-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px;
+  transition: var(--trans);
+}
+.stat-card:hover { border-color: var(--accent); }
+.stat-label {
+  font-size: .7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+.stat-value {
+  font-size: 1.8rem;
+  font-weight: 800;
+  font-family: var(--font-mono);
+  color: var(--accent);
+}
+
+/* TOOLBAR */
+.adm-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.cat-filters { display: flex; gap: 8px; flex-wrap: wrap; }
+.cat-pill {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--muted);
+  border-radius: 999px;
+  padding: 6px 16px;
+  font-size: .78rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--trans);
+  text-transform: capitalize;
+}
+.cat-pill:hover, .cat-pill.active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #000;
+}
+.btn-add {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--accent);
+  color: #000;
+  font-family: var(--font-ui);
+  font-weight: 700;
+  font-size: .82rem;
+  border: none;
+  border-radius: var(--radius);
+  padding: 9px 18px;
+  cursor: pointer;
+  transition: var(--trans);
+  white-space: nowrap;
+}
+.btn-add:hover { background: #d4eb2a; transform: translateY(-1px); }
+
+/* PRODUCT TABLE */
+.table-wrap {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+}
+.adm-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.adm-table thead th {
+  background: var(--surface2);
+  font-size: .68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  color: var(--muted);
+  padding: 12px 16px;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+}
+.adm-table tbody tr {
+  border-bottom: 1px solid var(--border);
+  transition: background .12s;
+}
+.adm-table tbody tr:last-child { border-bottom: none; }
+.adm-table tbody tr:hover { background: var(--surface2); }
+.adm-table td { padding: 14px 16px; font-size: .85rem; vertical-align: middle; }
+.td-img { width: 52px; }
+.td-img img {
+  width: 46px; height: 38px;
+  object-fit: cover;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+}
+.td-name { font-weight: 600; max-width: 180px; }
+.td-name small { display: block; color: var(--muted); font-size: .72rem; font-weight: 400; margin-top: 2px; }
+.td-price { font-family: var(--font-mono); color: var(--accent); font-size: .82rem; }
+.td-pos { font-family: var(--font-mono); color: var(--muted); font-size: .78rem; }
+.td-badge span {
+  display: inline-block;
+  background: rgba(232,255,59,.12);
+  border: 1px solid rgba(232,255,59,.25);
+  color: var(--accent);
+  border-radius: 4px;
+  padding: 2px 8px;
+  font-size: .68rem;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+.td-actions { display: flex; gap: 8px; }
+.btn-edit, .btn-del {
+  border: 1px solid;
+  border-radius: 6px;
+  padding: 5px 12px;
+  font-size: .72rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--trans);
+  background: transparent;
+  font-family: var(--font-ui);
+}
+.btn-edit { border-color: var(--border); color: var(--muted); }
+.btn-edit:hover { border-color: var(--accent2); color: var(--accent2); }
+.btn-del { border-color: var(--border); color: var(--muted); }
+.btn-del:hover { border-color: var(--red); color: var(--red); }
+
+/* LOADING / EMPTY */
+.table-loading, .table-empty {
+  text-align: center;
+  padding: 48px;
+  color: var(--muted);
+}
+.table-loading i, .table-empty i { font-size: 2rem; margin-bottom: 12px; display: block; }
+.table-empty small { font-size: .8rem; }
+
+/* ── MODAL OVERLAY ── */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.75);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .2s;
+  padding: 16px;
+}
+.modal-overlay.open {
+  opacity: 1;
+  pointer-events: all;
+}
+.modal-panel {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  width: 640px;
+  max-width: 100%;
+  max-height: 92vh;
+  overflow-y: auto;
+  transform: translateY(20px);
+  transition: transform .2s;
+}
+.modal-overlay.open .modal-panel { transform: translateY(0); }
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px 0;
+  margin-bottom: 20px;
+}
+.modal-header h2 { font-size: 1.1rem; font-weight: 800; }
+.modal-header h2 span { color: var(--accent); }
+.btn-close {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  color: var(--muted);
+  width: 32px; height: 32px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: .85rem;
+  transition: var(--trans);
+  display: flex; align-items: center; justify-content: center;
+}
+.btn-close:hover { color: var(--red); border-color: var(--red); }
+
+/* FORM */
+.modal-body { padding: 0 24px 24px; }
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.form-group { display: flex; flex-direction: column; gap: 6px; }
+.form-group.full { grid-column: 1 / -1; }
+.form-label {
+  font-size: .68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  color: var(--muted);
+}
+.form-input, .form-select, .form-textarea {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--text);
+  font-family: var(--font-ui);
+  font-size: .88rem;
+  padding: 10px 12px;
+  outline: none;
+  transition: var(--trans);
+  width: 100%;
+}
+.form-input:focus, .form-select:focus, .form-textarea:focus {
+  border-color: var(--accent);
+}
+.form-select { appearance: none; cursor: pointer; }
+.form-textarea { resize: vertical; min-height: 80px; }
+.form-section-title {
+  font-size: .72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  color: var(--accent2);
+  margin: 20px 0 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.form-section-title::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+.images-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.img-field { position: relative; }
+.img-field label {
+  font-size: .65rem;
+  color: var(--muted);
+  display: block;
+  margin-bottom: 4px;
+}
+.chips-wrap { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
+.chip {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 3px 10px;
+  font-size: .72rem;
+  color: var(--muted);
+  cursor: pointer;
+  transition: var(--trans);
+}
+.chip.selected {
+  background: rgba(59,255,203,.1);
+  border-color: var(--accent2);
+  color: var(--accent2);
+}
+.chip-hint { font-size: .68rem; color: var(--muted); margin-top: 4px; }
+
+.form-footer {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+  margin-top: 20px;
+}
+.btn-cancel {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  color: var(--muted);
+  border-radius: var(--radius);
+  padding: 10px 20px;
+  font-family: var(--font-ui);
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--trans);
+}
+.btn-cancel:hover { color: var(--text); border-color: var(--text); }
+.btn-save {
+  background: var(--accent);
+  border: none;
+  color: #000;
+  font-family: var(--font-ui);
+  font-weight: 700;
+  border-radius: var(--radius);
+  padding: 10px 24px;
+  cursor: pointer;
+  transition: var(--trans);
+  display: flex; align-items: center; gap: 8px;
+}
+.btn-save:hover { background: #d4eb2a; }
+.btn-save.loading { opacity: .6; pointer-events: none; }
+
+/* DELETE MODAL */
+.delete-modal-panel {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  width: 400px;
+  max-width: 100%;
+  padding: 32px;
+  text-align: center;
+}
+.delete-icon {
+  width: 56px; height: 56px;
+  background: rgba(255,71,87,.15);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 16px;
+  font-size: 1.4rem;
+  color: var(--red);
+}
+.delete-modal-panel h3 { font-size: 1.1rem; font-weight: 800; margin-bottom: 8px; }
+.delete-modal-panel p { color: var(--muted); font-size: .85rem; margin-bottom: 24px; }
+.delete-actions { display: flex; gap: 12px; justify-content: center; }
+.btn-confirm-del {
+  background: var(--red);
+  border: none;
+  color: #fff;
+  font-family: var(--font-ui);
+  font-weight: 700;
+  border-radius: var(--radius);
+  padding: 10px 24px;
+  cursor: pointer;
+  transition: var(--trans);
+}
+.btn-confirm-del:hover { background: #ff6b7a; }
+
+/* TOAST */
+.toast {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 14px 18px;
+  font-size: .85rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  z-index: 9999;
+  transform: translateY(80px);
+  opacity: 0;
+  transition: all .3s;
+  max-width: 320px;
+}
+.toast.show { transform: translateY(0); opacity: 1; }
+.toast.success { border-left: 3px solid var(--accent2); }
+.toast.error   { border-left: 3px solid var(--red); }
+.toast i.success-ic { color: var(--accent2); }
+.toast i.error-ic   { color: var(--red); }
+
+/* API INFO BANNER */
+.api-banner {
+  background: rgba(59,255,203,.07);
+  border: 1px solid rgba(59,255,203,.2);
+  border-radius: 10px;
+  padding: 12px 18px;
+  font-size: .78rem;
+  color: var(--accent2);
+  font-family: var(--font-mono);
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* ── MOBILE RESPONSIVE ── */
+@media (max-width: 900px) {
+  .adm-main { padding: 20px 16px; }
+  .stats-row { grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  .stat-card { padding: 14px; }
+  .stat-value { font-size: 1.4rem; }
+}
+
+@media (max-width: 640px) {
+  /* Header */
+  .adm-header { padding: 0 16px; height: 54px; }
+  .adm-brand { font-size: .95rem; }
+  .adm-status { display: none; }
+
+  /* Main */
+  .adm-main { padding: 16px 12px; }
+  .api-banner { font-size: .7rem; padding: 10px 12px; }
+
+  /* Stats */
+  .stats-row { grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 20px; }
+  .stat-card { padding: 12px; }
+  .stat-label { font-size: .62rem; }
+  .stat-value { font-size: 1.3rem; }
+
+  /* Category pills — scroll horizontally */
+  .cat-filters {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    gap: 6px;
+    padding-bottom: 4px;
+  }
+  .cat-filters::-webkit-scrollbar { display: none; }
+  .cat-pill { flex-shrink: 0; padding: 6px 12px; font-size: .72rem; }
+
+  /* Toolbar */
+  .adm-toolbar { flex-direction: column; align-items: stretch; gap: 10px; }
+  .btn-add { width: 100%; justify-content: center; padding: 11px; }
+
+  /* ── MOBILE TABLE → CARD LAYOUT ── */
+  .table-wrap { border-radius: 10px; }
+  .adm-table { display: block; }
+  .adm-table thead { display: none; }
+  .adm-table tbody { display: block; }
+  .adm-table tbody tr {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 14px;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+  }
+  .adm-table tbody tr:last-child { border-bottom: none; }
+  .adm-table td {
+    display: block;
+    padding: 0;
+    border: none;
+    font-size: .82rem;
+  }
+
+  /* Image — left side */
+  .td-img { flex-shrink: 0; }
+  .td-img img { width: 54px; height: 44px; border-radius: 6px; }
+
+  /* Name block — takes remaining space */
+  .td-name {
+    flex: 1;
+    min-width: 0;
+    font-size: .85rem;
+  }
+  .td-name small { font-size: .68rem; margin-top: 2px; }
+
+  /* Price — full width row */
+  .td-price {
+    width: 100%;
+    font-size: .9rem;
+    padding-left: 64px; /* align under name, past image */
+  }
+
+  /* Hide brand, category, pos, badge columns on mobile */
+  .adm-table td:nth-child(3),
+  .adm-table td:nth-child(4),
+  .adm-table td:nth-child(6),
+  .adm-table td:nth-child(7) { display: none; }
+
+  /* Actions — full width */
+  .td-actions {
+    width: 100%;
+    padding-left: 64px;
+    gap: 8px;
+  }
+  .btn-edit, .btn-del {
+    flex: 1;
+    justify-content: center;
+    padding: 7px 0;
+    text-align: center;
+  }
+
+  /* Form */
+  .form-grid { grid-template-columns: 1fr; }
+  .images-grid { grid-template-columns: 1fr; }
+  .modal-panel { border-radius: 12px; }
+  .modal-body { padding: 0 16px 20px; }
+  .modal-header { padding: 16px 16px 0; }
+
+  /* Login */
+  .login-box { padding: 32px 20px; }
+}
+
+@media (max-width: 380px) {
+  .stats-row { grid-template-columns: 1fr 1fr; }
+  .stat-value { font-size: 1.1rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- ══ LOGIN ══ -->
+<div id="loginScreen">
+  <div class="login-box">
+    <div class="login-logo">
+      <div class="mark"><i class="fas fa-laptop"></i></div>
+      <h1>Chedders<span>Store</span></h1>
+      <p>ADMIN PANEL · NETLIFY EDITION</p>
+    </div>
+    <label class="login-label" for="pwdInput">Password</label>
+    <input class="login-input" type="password" id="pwdInput" placeholder="Enter admin password" autocomplete="current-password">
+    <button class="btn-login" onclick="doLogin()"><i class="fas fa-lock-open" style="margin-right:8px"></i>Login</button>
+    <div class="login-error" id="loginError"><i class="fas fa-exclamation-circle"></i> Incorrect password</div>
+    <div class="netlify-badge"><i class="fas fa-bolt"></i> Powered by Netlify Functions</div>
+  </div>
+</div>
+
+<!-- ══ ADMIN SHELL ══ -->
+<div id="adminShell">
+
+  <!-- Header -->
+  <header class="adm-header">
+    <div class="adm-brand">Chedders<span>Admin</span></div>
+    <div class="adm-header-right">
+      <div class="adm-status">
+        <span class="status-dot"></span>
+        <span id="statusText">Connecting…</span>
+      </div>
+      <button class="btn-logout" onclick="doLogout()"><i class="fas fa-sign-out-alt" style="margin-right:4px"></i>Logout</button>
+    </div>
+  </header>
+
+  <div class="adm-main">
+
+    <!-- API Banner -->
+    <div class="api-banner">
+      <i class="fas fa-bolt"></i>
+      <span>Netlify Functions Mode — Edits POST to <code>/.netlify/functions/products</code> and update <code>/data/products.json</code> on disk.</span>
+    </div>
+
+    <!-- Stats -->
+    <div class="stats-row" id="statsRow">
+      <div class="stat-card"><div class="stat-label">Total Products</div><div class="stat-value" id="statTotal">—</div></div>
+      <div class="stat-card"><div class="stat-label">Laptops</div><div class="stat-value" id="statLaptop">—</div></div>
+      <div class="stat-card"><div class="stat-label">Desktops</div><div class="stat-value" id="statDesktop">—</div></div>
+      <div class="stat-card"><div class="stat-label">Servers</div><div class="stat-value" id="statServer">—</div></div>
+      <div class="stat-card"><div class="stat-label">Printers</div><div class="stat-value" id="statPrinter">—</div></div>
+    </div>
+
+    <!-- Toolbar -->
+    <div class="adm-toolbar">
+      <div class="cat-filters" id="catFilters">
+        <button class="cat-pill active" data-cat="all" onclick="filterCat(this)">All</button>
+        <button class="cat-pill" data-cat="laptop" onclick="filterCat(this)"><i class="fas fa-laptop"></i> Laptops</button>
+        <button class="cat-pill" data-cat="desktop" onclick="filterCat(this)"><i class="fas fa-desktop"></i> Desktops</button>
+        <button class="cat-pill" data-cat="server" onclick="filterCat(this)"><i class="fas fa-server"></i> Servers</button>
+        <button class="cat-pill" data-cat="printer" onclick="filterCat(this)"><i class="fas fa-print"></i> Printers</button>
+      </div>
+      <button class="btn-add" onclick="openAddModal()"><i class="fas fa-plus"></i> Add Product</button>
+    </div>
+
+    <!-- Table -->
+    <div class="table-wrap">
+      <table class="adm-table">
+        <thead>
+          <tr>
+            <th>Image</th>
+            <th>Product</th>
+            <th>Brand</th>
+            <th>Category</th>
+            <th>Price</th>
+            <th>Pos</th>
+            <th>Badge</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="productsTbody">
+          <tr><td colspan="8">
+            <div class="table-loading"><i class="fas fa-spinner fa-spin"></i>Loading products…</div>
+          </td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ══ PRODUCT FORM MODAL ══ -->
+<div class="modal-overlay" id="productModal">
+  <div class="modal-panel">
+    <div class="modal-header">
+      <h2 id="modalTitle"><span>Add</span> Product</h2>
+      <button class="btn-close" onclick="closeModal('productModal')"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="modal-body">
+      <input type="hidden" id="editId">
+      <div class="form-grid">
+        <div class="form-group">
+          <label class="form-label">Category *</label>
+          <select class="form-select" id="fType">
+            <option value="laptop">Laptop</option>
+            <option value="desktop">Desktop</option>
+            <option value="server">Server</option>
+            <option value="printer">Printer</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Brand *</label>
+          <input class="form-input" id="fBrand" placeholder="e.g. Apple">
+        </div>
+        <div class="form-group full">
+          <label class="form-label">Product Name *</label>
+          <input class="form-input" id="fName" placeholder="e.g. MacBook Pro 16 M3 Max">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Base Price (₦) *</label>
+          <input class="form-input" id="fPrice" type="number" placeholder="e.g. 2850000">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Position</label>
+          <input class="form-input" id="fPosition" type="number" placeholder="1" value="99">
+        </div>
+        <div class="form-group full">
+          <label class="form-label">Processor</label>
+          <input class="form-input" id="fProcessor" placeholder="e.g. Apple M3 Max Chip">
+        </div>
+        <div class="form-group full">
+          <label class="form-label">Display</label>
+          <input class="form-input" id="fDisplay" placeholder="e.g. 16.2 Liquid Retina XDR">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Badge</label>
+          <input class="form-input" id="fBadge" placeholder="e.g. Best Seller">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Rating (0–5)</label>
+          <input class="form-input" id="fRating" type="number" step="0.1" min="0" max="5" placeholder="4.9">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Reviews Count</label>
+          <input class="form-input" id="fReviews" type="number" placeholder="234">
+        </div>
+        <div class="form-group full">
+          <label class="form-label">YouTube Video ID <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--muted)">(optional — e.g. wfbL-7K8P0k)</span></label>
+          <input class="form-input" id="fYoutube" placeholder="e.g. wfbL-7K8P0k">
+        </div>
+      </div>
+
+      <div class="form-section-title"><i class="fas fa-images"></i> Images (URL — up to 5)</div>
+      <div class="images-grid">
+        <div class="img-field"><label>Image 1 (Main)</label><input class="form-input" id="fImg1" placeholder="https://..."></div>
+        <div class="img-field"><label>Image 2</label><input class="form-input" id="fImg2" placeholder="https://..."></div>
+        <div class="img-field"><label>Image 3</label><input class="form-input" id="fImg3" placeholder="https://..."></div>
+        <div class="img-field"><label>Image 4</label><input class="form-input" id="fImg4" placeholder="https://..."></div>
+        <div class="img-field full"><label>Image 5</label><input class="form-input" id="fImg5" placeholder="https://..."></div>
+      </div>
+
+      <div class="form-section-title"><i class="fas fa-sliders-h"></i> Configuration Options</div>
+      <div class="form-grid">
+        <div class="form-group full">
+          <label class="form-label">RAM Options</label>
+          <div class="chips-wrap" id="ramChips">
+            <span class="chip" data-val="8GB" onclick="toggleChip(this,'ram')">8GB</span>
+            <span class="chip" data-val="16GB" onclick="toggleChip(this,'ram')">16GB</span>
+            <span class="chip" data-val="32GB" onclick="toggleChip(this,'ram')">32GB</span>
+            <span class="chip" data-val="48GB" onclick="toggleChip(this,'ram')">48GB</span>
+            <span class="chip" data-val="64GB" onclick="toggleChip(this,'ram')">64GB</span>
+            <span class="chip" data-val="96GB" onclick="toggleChip(this,'ram')">96GB</span>
+          </div>
+          <div class="chip-hint">Click to toggle. Selected = available option.</div>
+        </div>
+        <div class="form-group full">
+          <label class="form-label">Storage Options</label>
+          <div class="chips-wrap" id="storageChips">
+            <span class="chip" data-val="256GB SSD" onclick="toggleChip(this,'storage')">256GB SSD</span>
+            <span class="chip" data-val="512GB SSD" onclick="toggleChip(this,'storage')">512GB SSD</span>
+            <span class="chip" data-val="1TB SSD" onclick="toggleChip(this,'storage')">1TB SSD</span>
+            <span class="chip" data-val="2TB SSD" onclick="toggleChip(this,'storage')">2TB SSD</span>
+            <span class="chip" data-val="4TB SSD" onclick="toggleChip(this,'storage')">4TB SSD</span>
+            <span class="chip" data-val="1TB HDD" onclick="toggleChip(this,'storage')">1TB HDD</span>
+            <span class="chip" data-val="2TB HDD" onclick="toggleChip(this,'storage')">2TB HDD</span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Touchscreen</label>
+          <select class="form-select" id="fTouch">
+            <option value="false">No Touchscreen</option>
+            <option value="true">Yes – Touchscreen Available</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-footer">
+        <button class="btn-cancel" onclick="closeModal('productModal')">Cancel</button>
+        <button class="btn-save" id="btnSave" onclick="saveProduct()">
+          <i class="fas fa-save"></i> Save Product
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ DELETE CONFIRM MODAL ══ -->
+<div class="modal-overlay" id="deleteModal">
+  <div class="delete-modal-panel">
+    <div class="delete-icon"><i class="fas fa-trash"></i></div>
+    <h3>Delete Product?</h3>
+    <p id="deleteMsg">Are you sure you want to delete this product? This cannot be undone.</p>
+    <div class="delete-actions">
+      <button class="btn-cancel" onclick="closeModal('deleteModal')">Cancel</button>
+      <button class="btn-confirm-del" id="btnConfirmDel" onclick="confirmDelete()">Delete</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══ TOAST ══ -->
+<div class="toast" id="toast">
+  <i id="toastIcon"></i>
+  <span id="toastMsg"></span>
+</div>
+
+<script>
+/* ════════════════════════════════════════════
+   CHEDDERS ADMIN — NETLIFY FUNCTIONS VERSION
+   API Endpoint: /.netlify/functions/products
+   GET  → load all products
+   POST → { action: 'add'|'update'|'delete', product?, id? }
+   ════════════════════════════════════════════ */
+
+'use strict';
+
+const ADMIN_PASSWORD = 'chedders123';   // ← change or move to env var
+const API_URL        = '/.netlify/functions/products';
+
+let allProducts   = [];
+let currentCatFilter = 'all';
+let deleteTargetId   = null;
+
+/* ── AUTH ── */
+function doLogin() {
+  const pwd = document.getElementById('pwdInput').value;
+  if (pwd === ADMIN_PASSWORD) {
+    document.getElementById('loginScreen').style.display = 'none';
+    document.getElementById('adminShell').style.display  = 'block';
+    loadProducts();
+  } else {
+    document.getElementById('loginError').style.display = 'flex';
+    document.getElementById('loginError').style.alignItems = 'center';
+    document.getElementById('loginError').style.gap = '6px';
+  }
+}
+document.getElementById('pwdInput').addEventListener('keydown', e => {
+  if (e.key === 'Enter') doLogin();
+});
+function doLogout() {
+  document.getElementById('adminShell').style.display  = 'none';
+  document.getElementById('loginScreen').style.display = 'flex';
+  document.getElementById('pwdInput').value = '';
+}
+
+/* ── API HELPERS ── */
+async function apiGet() {
+  const res = await fetch(API_URL);
+  if (!res.ok) throw new Error('GET failed: ' + res.status);
+  return res.json();
+}
+async function apiPost(body) {
+  const res = await fetch(API_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(body)
+  });
+  if (!res.ok) throw new Error('POST failed: ' + res.status);
+  return res.json();
+}
+
+/* ── LOAD PRODUCTS ── */
+async function loadProducts() {
+  document.getElementById('statusText').textContent = 'Syncing…';
+  try {
+    const data = await apiGet();
+    allProducts = Array.isArray(data) ? data : (data.products || []);
+    allProducts.sort((a,b) => (a.position||99) - (b.position||99));
+    updateStats();
+    renderTable();
+    document.getElementById('statusText').textContent = 'Live · ' + allProducts.length + ' products';
+    showToast('success', 'Products loaded — ' + allProducts.length + ' items');
+  } catch(err) {
+    console.error(err);
+    document.getElementById('statusText').textContent = 'API offline';
+    allProducts = [];
+    updateStats();
+    renderTable();
+    showToast('error', 'Could not reach /.netlify/functions/products');
+  }
+}
+
+/* ── STATS ── */
+function updateStats() {
+  document.getElementById('statTotal').textContent   = allProducts.length;
+  document.getElementById('statLaptop').textContent  = allProducts.filter(p=>p.type==='laptop').length;
+  document.getElementById('statDesktop').textContent = allProducts.filter(p=>p.type==='desktop').length;
+  document.getElementById('statServer').textContent  = allProducts.filter(p=>p.type==='server').length;
+  document.getElementById('statPrinter').textContent = allProducts.filter(p=>p.type==='printer').length;
+}
+
+/* ── RENDER TABLE ── */
+function filterCat(btn) {
+  document.querySelectorAll('.cat-pill').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  currentCatFilter = btn.dataset.cat;
+  renderTable();
+}
+
+function renderTable() {
+  const tbody = document.getElementById('productsTbody');
+  let list = currentCatFilter === 'all'
+    ? allProducts
+    : allProducts.filter(p => p.type === currentCatFilter);
+
+  if (list.length === 0) {
+    tbody.innerHTML = `<tr><td colspan="8"><div class="table-empty"><i class="fas fa-inbox"></i>No products in this category.<small> Click "+ Add Product" to get started.</small></div></td></tr>`;
+    return;
+  }
+
+  tbody.innerHTML = list.map(p => {
+    const img = (p.images && p.images[0]) || p.image || '';
+    const price = new Intl.NumberFormat('en-NG', {style:'currency', currency:'NGN', maximumFractionDigits:0}).format(p.basePrice);
+    return `<tr>
+      <td class="td-img"><img src="${img}" alt="${p.name}" onerror="this.src='data:image/svg+xml,<svg xmlns=\\'http://www.w3.org/2000/svg\\' width=\\'46\\' height=\\'38\\'><rect width=\\'46\\' height=\\'38\\' fill=\\'%2323262f\\'></rect></svg>'"></td>
+      <td class="td-name">${p.name}<small>${p.processor||''}</small></td>
+      <td>${p.brand}</td>
+      <td><span style="text-transform:capitalize">${p.type}</span></td>
+      <td class="td-price">${price}</td>
+      <td class="td-pos">#${p.position||'—'}</td>
+      <td class="td-badge"><span>${p.badge||''}</span></td>
+      <td class="td-actions">
+        <button class="btn-edit" onclick="openEditModal(${p.id})"><i class="fas fa-pen"></i> Edit</button>
+        <button class="btn-del"  onclick="openDeleteModal(${p.id})"><i class="fas fa-trash"></i></button>
+      </td>
+    </tr>`;
+  }).join('');
+}
+
+/* ── FORM HELPERS ── */
+function toggleChip(el, type) {
+  el.classList.toggle('selected');
+}
+function getSelectedChips(wrapperId) {
+  return [...document.querySelectorAll(`#${wrapperId} .chip.selected`)].map(c => c.dataset.val);
+}
+function setSelectedChips(wrapperId, values) {
+  document.querySelectorAll(`#${wrapperId} .chip`).forEach(c => {
+    c.classList.toggle('selected', values.includes(c.dataset.val));
+  });
+}
+function clearChips() {
+  document.querySelectorAll('.chip').forEach(c => c.classList.remove('selected'));
+}
+function resetForm() {
+  ['fBrand','fName','fPrice','fPosition','fProcessor','fDisplay','fBadge','fRating','fReviews','fYoutube',
+   'fImg1','fImg2','fImg3','fImg4','fImg5'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.value = '';
+  });
+  document.getElementById('fType').value  = 'laptop';
+  document.getElementById('fTouch').value = 'false';
+  document.getElementById('fPosition').value = '99';
+  document.getElementById('editId').value = '';
+  clearChips();
+}
+
+/* ── OPEN ADD MODAL ── */
+function openAddModal() {
+  resetForm();
+  document.getElementById('modalTitle').innerHTML = '<span>Add</span> Product';
+  openModal('productModal');
+}
+
+/* ── OPEN EDIT MODAL ── */
+function openEditModal(id) {
+  const p = allProducts.find(x => x.id === id);
+  if (!p) return;
+  resetForm();
+  document.getElementById('modalTitle').innerHTML = '<span>Edit</span> Product';
+  document.getElementById('editId').value       = p.id;
+  document.getElementById('fType').value        = p.type || 'laptop';
+  document.getElementById('fBrand').value       = p.brand || '';
+  document.getElementById('fName').value        = p.name || '';
+  document.getElementById('fPrice').value       = p.basePrice || '';
+  document.getElementById('fPosition').value    = p.position || 99;
+  document.getElementById('fProcessor').value   = p.processor || '';
+  document.getElementById('fDisplay').value     = p.display || '';
+  document.getElementById('fBadge').value       = p.badge || '';
+  document.getElementById('fRating').value      = p.rating || '';
+  document.getElementById('fReviews').value     = p.reviews || '';
+  document.getElementById('fTouch').value       = (p.config && p.config.touch) ? 'true' : 'false';
+  document.getElementById('fYoutube').value      = p.youtube || '';
+
+  const imgs = p.images || (p.image ? [p.image] : []);
+  ['fImg1','fImg2','fImg3','fImg4','fImg5'].forEach((fid, i) => {
+    document.getElementById(fid).value = imgs[i] || '';
+  });
+
+  if (p.config) {
+    setSelectedChips('ramChips',     p.config.ram     || []);
+    setSelectedChips('storageChips', p.config.storage || []);
+  }
+  openModal('productModal');
+}
+
+/* ── SAVE PRODUCT ── */
+async function saveProduct() {
+  const name  = document.getElementById('fName').value.trim();
+  const brand = document.getElementById('fBrand').value.trim();
+  const price = parseFloat(document.getElementById('fPrice').value);
+  if (!name || !brand || !price) {
+    showToast('error', 'Name, Brand and Price are required');
+    return;
+  }
+  const editId = document.getElementById('editId').value;
+  const imgs   = ['fImg1','fImg2','fImg3','fImg4','fImg5']
+    .map(id => document.getElementById(id).value.trim()).filter(Boolean);
+
+  const product = {
+    id:         editId ? parseInt(editId) : Date.now(),
+    type:       document.getElementById('fType').value,
+    brand:      brand,
+    brand_key:  brand.toLowerCase().replace(/\s+/g,'_'),
+    name:       name,
+    images:     imgs,
+    basePrice:  price,
+    processor:  document.getElementById('fProcessor').value.trim(),
+    display:    document.getElementById('fDisplay').value.trim(),
+    badge:      document.getElementById('fBadge').value.trim(),
+    rating:     parseFloat(document.getElementById('fRating').value) || 4.5,
+    reviews:    parseInt(document.getElementById('fReviews').value) || 0,
+    position:   parseInt(document.getElementById('fPosition').value) || 99,
+    youtube:    document.getElementById('fYoutube').value.trim() || '',
+    config: {
+      ram:     getSelectedChips('ramChips'),
+      storage: getSelectedChips('storageChips'),
+      touch:   document.getElementById('fTouch').value === 'true'
+    }
+  };
+
+  const btn = document.getElementById('btnSave');
+  btn.classList.add('loading');
+  btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Saving…';
+
+  try {
+    const action = editId ? 'update' : 'add';
+    await apiPost({ action, product });
+    await loadProducts();
+    closeModal('productModal');
+    showToast('success', editId ? 'Product updated ✓' : 'Product added ✓');
+  } catch(err) {
+    /* Demo mode: update in-memory only */
+    if (editId) {
+      const idx = allProducts.findIndex(x => x.id === parseInt(editId));
+      if (idx > -1) allProducts[idx] = product;
+    } else {
+      allProducts.push(product);
+    }
+    allProducts.sort((a,b) => (a.position||99) - (b.position||99));
+    updateStats();
+    renderTable();
+    closeModal('productModal');
+    showToast('success', (editId ? 'Product updated' : 'Product added') + ' (demo — not persisted)');
+  } finally {
+    btn.classList.remove('loading');
+    btn.innerHTML = '<i class="fas fa-save"></i> Save Product';
+  }
+}
+
+/* ── DELETE ── */
+function openDeleteModal(id) {
+  const p = allProducts.find(x => x.id === id);
+  if (!p) return;
+  deleteTargetId = id;
+  document.getElementById('deleteMsg').textContent = `Delete "${p.name}"? This cannot be undone.`;
+  openModal('deleteModal');
+}
+async function confirmDelete() {
+  if (!deleteTargetId) return;
+  const btn = document.getElementById('btnConfirmDel');
+  btn.textContent = 'Deleting…';
+  btn.disabled = true;
+  try {
+    await apiPost({ action: 'delete', id: deleteTargetId });
+    await loadProducts();
+    closeModal('deleteModal');
+    showToast('success', 'Product deleted');
+  } catch(err) {
+    allProducts = allProducts.filter(x => x.id !== deleteTargetId);
+    updateStats(); renderTable();
+    closeModal('deleteModal');
+    showToast('success', 'Deleted (demo mode)');
+  } finally {
+    btn.textContent = 'Delete';
+    btn.disabled = false;
+    deleteTargetId = null;
+  }
+}
+
+/* ── MODAL HELPERS ── */
+function openModal(id)  { document.getElementById(id).classList.add('open'); }
+function closeModal(id) { document.getElementById(id).classList.remove('open'); }
+document.querySelectorAll('.modal-overlay').forEach(m => {
+  m.addEventListener('click', e => { if (e.target === m) m.classList.remove('open'); });
+});
+
+/* ── TOAST ── */
+function showToast(type, msg) {
+  const t  = document.getElementById('toast');
+  const ic = document.getElementById('toastIcon');
+  const ms = document.getElementById('toastMsg');
+  t.className = 'toast ' + type;
+  ic.className = type === 'success' ? 'fas fa-check-circle success-ic' : 'fas fa-exclamation-circle error-ic';
+  ms.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 3200);
+}
+</script>
+</body>
+</html>

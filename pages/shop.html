@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop | Chedders Computer – Laptops, Desktops, Servers & Printers</title>
+    <meta name="description" content="Shop brand new laptops, desktops, servers and printers in Lagos. Chedders Computer – 100% genuine, sealed, nationwide delivery across Nigeria.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/style.css" rel="stylesheet">
+    <link href="../css/shop.css" rel="stylesheet">
+</head>
+<body>
+
+<!-- ── LOADER ── -->
+<div id="cc-loader">
+    <div class="loader-brand mb-3">Chedders<span>Computer</span></div>
+    <div class="loader-dots">
+        <div class="loader-dot"></div>
+        <div class="loader-dot"></div>
+        <div class="loader-dot"></div>
+    </div>
+</div>
+
+<!-- ============================================================
+     TOPBAR
+============================================================ -->
+<div class="cc-topbar d-none d-md-block">
+    <div class="container-xxl">
+        <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
+            <div class="d-flex gap-4 flex-wrap">
+                <span><i class="fas fa-map-marker-alt topbar-icon me-1"></i> 10 simbiat, abiola way, computer village ikeja beside zenith bank, Lagos Nigeria</span>
+                <span><i class="fas fa-phone-alt topbar-icon me-1"></i><a href="tel:+2349160006406">+234 916 000 6406</a></span>
+                <span><i class="fas fa-envelope topbar-icon me-1"></i><a href="mailto:support@chedderscomputer.store">support@chedderscomputer.store</a></span>
+            </div>
+            <div class="topbar-social d-flex gap-2">
+                <a href="https://www.facebook.com/share/17CfgRLadA/" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.instagram.com/chedderscomputer?igsh=Z2xjYmQ4OTV1MnI2" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" aria-label="Tiktok"><i class="fab fa-tiktok"></i></a>
+                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ── NAVBAR ── -->
+<nav class="cc-navbar navbar navbar-expand-lg">
+    <div class="container-xxl">
+        <a href="../index.html" class="navbar-brand d-flex align-items-center gap-2 me-lg-4">
+            <div class="brand-icon"><i class="fas fa-laptop"></i></div>
+            <div>
+                <div class="brand-name">Chedders<span>Computer</span></div>
+                <div class="brand-domain">chedderscomputer.store</div>
+            </div>
+        </a>
+        <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#ccNav" aria-controls="ccNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="toggler-bar"></span><span class="toggler-bar"></span><span class="toggler-bar"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="ccNav">
+            <ul class="navbar-nav mx-auto gap-1">
+                <li class="nav-item"><a href="../index.html"  class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="about.html"    class="nav-link">About</a></li>
+                <li class="nav-item"><a href="services.html" class="nav-link">Services</a></li>
+                <li class="nav-item"><a href="blog.html"     class="nav-link">Blog</a></li>
+                <li class="nav-item"><a href="contact.html"  class="nav-link">Contact</a></li>
+            </ul>
+            <div class="d-flex align-items-center gap-3 mt-3 mt-lg-0">
+                <button class="nav-cart-btn" id="navCartBtn" onclick="openCart()" aria-label="Cart">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count-badge" id="navCartBadge"></span>
+                </button>
+                <a href="shop.html" class="btn-cc-primary"><i class="fas fa-laptop"></i> Shop Now</a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- ── PAGE HEADER ── -->
+<div class="page-header">
+    <div class="container-xxl">
+        <h1>Our Product Range</h1>
+        <p>Brand new laptops, desktops, servers &amp; printers — 100% genuine, sealed, and ready to ship across Nigeria.</p>
+        <div class="cc-breadcrumb">
+            <a href="../index.html">Home</a>
+            <i class="fas fa-chevron-right" style="font-size:.6rem"></i>
+            <span>Shop</span>
+        </div>
+    </div>
+</div>
+
+<!-- ── MAIN SHOP ── -->
+<section class="cc-section">
+    <div class="container-xxl">
+
+        <!-- Category tabs -->
+        <div class="category-tabs" id="catTabs">
+            <button class="cat-tab active" data-cat="all">
+                <i class="fas fa-th-large"></i><span>All Products</span>
+            </button>
+            <button class="cat-tab" data-cat="laptop">
+                <i class="fas fa-laptop"></i><span>Laptops</span>
+            </button>
+            <button class="cat-tab" data-cat="desktop">
+                <i class="fas fa-desktop"></i><span>Desktops</span>
+            </button>
+            <button class="cat-tab" data-cat="server">
+                <i class="fas fa-server"></i><span>Servers</span>
+            </button>
+            <button class="cat-tab" data-cat="printer">
+                <i class="fas fa-print"></i><span>Printers</span>
+            </button>
+        </div>
+
+        <!-- Filters -->
+        <div class="shop-filters-bar">
+            <div class="filter-group">
+                <label>Brand</label>
+                <select class="filter-select" id="filterBrand">
+                    <option value="all">All Brands</option>
+                    <option value="apple">Apple</option>
+                    <option value="dell">Dell</option>
+                    <option value="lenovo">Lenovo</option>
+                    <option value="asus">ASUS</option>
+                    <option value="hp">HP</option>
+                    <option value="microsoft">Microsoft</option>
+                    <option value="acer">Acer</option>
+                    <option value="epson">Epson</option>
+                    <option value="canon">Canon</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label>Price Range</label>
+                <select class="filter-select" id="filterPrice">
+                    <option value="all">All Prices</option>
+                    <option value="under500k">Under ₦500k</option>
+                    <option value="500k-1m">₦500k – ₦1M</option>
+                    <option value="1m-2m">₦1M – ₦2M</option>
+                    <option value="over2m">Over ₦2M</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label>Sort By</label>
+                <select class="filter-select" id="filterSort">
+                    <option value="default">Default</option>
+                    <option value="price-asc">Price: Low → High</option>
+                    <option value="price-desc">Price: High → Low</option>
+                    <option value="rating">Top Rated</option>
+                    <option value="newest">Newest</option>
+                </select>
+            </div>
+            <div class="filter-results-wrap">
+                <span class="results-count"><strong id="resultsCount">0</strong> products</span>
+                <button class="btn-reset-filters" onclick="resetFilters()">
+                    <i class="fas fa-rotate-left me-1"></i>Reset
+                </button>
+            </div>
+        </div>
+
+        <!-- Grid -->
+        <div class="row g-4" id="shopGrid"></div>
+
+        <!-- Empty state -->
+        <div id="shopEmpty" class="empty-state" style="display:none">
+            <i class="fas fa-search"></i>
+            <h3>No products found</h3>
+            <p>Try adjusting your filters or selecting a different category.</p>
+        </div>
+
+    </div>
+</section>
+
+<!-- ── CART FAB ── -->
+<button class="cart-fab" onclick="openCart()" aria-label="Open cart">
+    <i class="fas fa-shopping-cart"></i>
+    <span class="cart-count-badge" id="fabCartBadge"></span>
+</button>
+
+<!-- ── CART MODAL ── -->
+<div class="cc-modal-overlay" id="cartModal">
+    <div class="cc-modal-panel">
+        <div class="cc-modal-header">
+            <h3><i class="fas fa-shopping-cart"></i> Your Cart</h3>
+            <button class="modal-x" onclick="closeCart()"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="cc-modal-body" id="cartBody"></div>
+        <div class="cc-modal-footer">
+            <div id="cartSummary"></div>
+            <button class="btn-cc-primary w-100 justify-content-center mt-3" id="checkoutBtn"
+                    style="padding:12px" onclick="openCheckout()">
+                <i class="fas fa-arrow-right"></i> Proceed to Checkout
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- ── CHECKOUT MODAL ── -->
+<div class="cc-modal-overlay" id="checkoutModal">
+    <div class="cc-modal-panel">
+        <div class="cc-modal-header">
+            <h3><i class="fas fa-lock"></i> Secure Checkout</h3>
+            <button class="modal-x" onclick="closeCheckout()"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="cc-modal-body">
+            <div class="checkout-summary-box" id="checkoutSummary"></div>
+
+            <h5 style="color:var(--cc-white);font-family:'Playfair Display',serif;margin:20px 0 12px">
+                <i class="fas fa-credit-card me-2" style="color:var(--cc-blue-lt);font-size:.9rem"></i>Payment Method
+            </h5>
+            <div class="payment-grid mb-4">
+                <label class="pay-option">
+                    <input type="radio" name="payment" value="card" checked>
+                    <span class="pay-label"><i class="fas fa-credit-card"></i> Card</span>
+                </label>
+                <label class="pay-option">
+                    <input type="radio" name="payment" value="transfer">
+                    <span class="pay-label"><i class="fas fa-university"></i> Bank Transfer</span>
+                </label>
+                <label class="pay-option">
+                    <input type="radio" name="payment" value="ussd">
+                    <span class="pay-label"><i class="fas fa-mobile-alt"></i> USSD</span>
+                </label>
+                <label class="pay-option">
+                    <input type="radio" name="payment" value="crypto">
+                    <span class="pay-label"><i class="fab fa-bitcoin"></i> Crypto</span>
+                </label>
+            </div>
+
+            <h5 style="color:var(--cc-white);font-family:'Playfair Display',serif;margin:0 0 14px">
+                <i class="fas fa-truck me-2" style="color:var(--cc-blue-lt);font-size:.9rem"></i>Shipping Details
+            </h5>
+            <form id="checkoutForm" onsubmit="placeOrder(event)">
+                <div class="row g-3 mb-3">
+                    <div class="col-sm-6">
+                        <label class="co-label">Full Name *</label>
+                        <input type="text" class="co-input" placeholder="John Doe" required>
+                    </div>
+                    <div class="col-sm-6">
+                        <label class="co-label">Phone *</label>
+                        <input type="tel" class="co-input" placeholder="+234 800 000 0000" required>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="co-label">Email *</label>
+                    <input type="email" class="co-input" placeholder="you@example.com" required>
+                </div>
+                <div class="mb-3">
+                    <label class="co-label">Delivery Address *</label>
+                    <textarea class="co-textarea" placeholder="Street, City, State" required></textarea>
+                </div>
+                <button type="submit" class="btn-cc-primary w-100 justify-content-center" id="placeOrderBtn" style="padding:12px">
+                    <i class="fas fa-check-circle"></i> Place Order
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- ── SUCCESS MODAL ── -->
+<div class="cc-modal-overlay" id="successModal">
+    <div class="cc-modal-panel">
+        <div class="success-panel mx-auto">
+            <div class="success-icon"><i class="fas fa-check"></i></div>
+            <h3>Order Placed!</h3>
+            <p>Thank you for your purchase. You'll receive a confirmation shortly. Our team will contact you to confirm delivery details.</p>
+            <button class="btn-cc-primary w-100 justify-content-center" style="padding:12px"
+                    onclick="closeSuccess();window.scrollTo({top:0,behavior:'smooth'})">
+                Continue Shopping
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- ============================================================
+     FOOTER
+============================================================ -->
+<footer class="cc-footer pt-5">
+    <div class="container-xxl">
+        <div class="row gy-5">
+            <!-- Brand -->
+            <div class="col-lg-4">
+                <div class="d-flex align-items-center gap-2 mb-3">
+                    <div class="brand-icon"><i class="fas fa-laptop"></i></div>
+                    <div>
+                        <div class="footer-brand-name">Chedders<span>Computer</span></div>
+                        <div class="brand-domain">chedderscomputer.store</div>
+                    </div>
+                </div>
+                <p class="footer-about mb-3">
+                    Lagos's trusted destination for 100% brand-new, sealed laptops. From the heart of Lagos Island,
+                    we deliver quality technology to your doorstep across Nigeria.
+                </p>
+                <div class="footer-social d-flex gap-2">
+                    <a href="https://www.facebook.com/share/17CfgRLadA/" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/chedderscomputer?igsh=Z2xjYmQ4OTV1MnI2" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="Tiktok"><i class="fab fa-tiktok"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            <!-- Quick Links -->
+            <div class="col-6 col-lg-2">
+                <h6 class="footer-heading">Quick Links</h6>
+                <ul class="footer-links">
+                    <li><a href="index.html"><i class="fas fa-angle-right"></i> Home</a></li>
+                    <li><a href="pages/about.html"><i class="fas fa-angle-right"></i> About Us</a></li>
+                    <li><a href="pages/services.html"><i class="fas fa-angle-right"></i> Services</a></li>
+                    <li><a href="pages/shop.html"><i class="fas fa-angle-right"></i> Shop</a></li>
+                    <li><a href="pages/blog.html"><i class="fas fa-angle-right"></i> Blog</a></li>
+                    <li><a href="pages/contact.html"><i class="fas fa-angle-right"></i> Contact</a></li>
+                </ul>
+            </div>
+            <!-- Help -->
+            <div class="col-6 col-lg-2">
+                <h6 class="footer-heading">Help</h6>
+                <ul class="footer-links">
+                    <li><a href="pages/faqs.html"><i class="fas fa-angle-right"></i> FAQs</a></li>
+                    <li><a href="pages/shippingpolicy.html"><i class="fas fa-angle-right"></i> Shipping Policy</a></li>
+                    <li><a href="pages/returnpolicy.html"><i class="fas fa-angle-right"></i> Return Policy</a></li>
+                    <li><a href="pages/warranty.html"><i class="fas fa-angle-right"></i> Warranty</a></li>
+                    <li><a href="pages/privacypolicy.html"><i class="fas fa-angle-right"></i> Privacy Policy</a></li>
+                    <li><a href="pages/termsofuse.html"><i class="fas fa-angle-right"></i> Terms of Use</a></li>
+                </ul>
+            </div>
+            <!-- Contact -->
+            <div class="col-lg-4">
+                <h6 class="footer-heading">Contact Us</h6>
+                <div class="footer-contact-item"><i class="fas fa-map-marker-alt"></i><span>No 10 simbiat, abiola way, computer village ikeja beside zenith bank, Lagos Nigeria</span></div>
+                <div class="footer-contact-item"><i class="fas fa-phone-alt"></i><a href="tel:+2349160006406">+234 916 000 6406</a></div>
+                <div class="footer-contact-item"><i class="fas fa-envelope"></i><a href="mailto:hello@chedderscomputer.store">support@chedderscomputer.store</a></div>
+                <div class="footer-contact-item"><i class="fas fa-clock"></i><span>Mon – Sat: 9am – 7pm</span></div>
+            </div>
+        </div>
+
+        <hr style="border-color:var(--cc-border);margin-top:3rem">
+        <div class="footer-bottom d-flex flex-column flex-sm-row align-items-center justify-content-between gap-2">
+            <div>© 2025 <a href="index.html">Chedders Computer</a>. All rights reserved. | chedderscomputer.store</div>
+            <div><i class="fas fa-lock me-1"></i> Secure Shopping</div>
+        </div>
+    </div>
+</footer>
+
+<!-- ============================================================
+     whatsapp-float
+============================================================ -->
+<a href="https://wa.me/2349060006406?text=Hello%20Chedders%20Computers,%20I%20want%20to%20make%20an%20enquiry."
+   target="_blank"
+   class="whatsapp-float">
+   <i class="fab fa-whatsapp"></i>
+</a>
+
+<button class="back-to-top" id="backToTop" aria-label="Back to top">
+    <i class="fas fa-arrow-up"></i>
+</button>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../js/main.js"></script>
+<script src="../js/shop.js"></script>
+</body>

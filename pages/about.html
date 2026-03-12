@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | Chedders Computer – chedderscomputer.store</title>
+    <meta name="description" content="Learn about Chedders Computer – Lagos's trusted seller of 100% brand-new sealed laptops from Apple, Dell, Lenovo, ASUS, HP and more.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/style.css" rel="stylesheet">
+
+    <style>
+    /* ── About page extras ── */
+    .about-img-wrap {
+        position: relative; border-radius: 20px; overflow: hidden;
+        box-shadow: var(--cc-shadow-lg);
+    }
+    .about-img-wrap img { width: 100%; display: block; border-radius: 20px; }
+    .about-img-badge {
+        position: absolute; bottom: 24px; left: 24px;
+        background: var(--cc-grad);
+        border-radius: 14px; padding: 14px 20px;
+        display: flex; flex-direction: column; align-items: center;
+        box-shadow: var(--cc-shadow-lg);
+    }
+    .about-img-badge .badge-number {
+        font-family: 'Playfair Display', serif;
+        font-size: 1.8rem; font-weight: 900; color: #fff; line-height: 1;
+    }
+    .about-img-badge .badge-text {
+        font-size: .72rem; color: rgba(255,255,255,.85); font-weight: 600;
+        text-transform: uppercase; letter-spacing: .5px;
+    }
+    .value-chip {
+        display: inline-flex; align-items: center; gap: 7px;
+        background: rgba(29,110,245,.08);
+        border: 1px solid rgba(29,110,245,.2);
+        color: var(--cc-blue-lt);
+        padding: 6px 14px; border-radius: 50px;
+        font-size: .82rem; font-weight: 600;
+    }
+    .value-chip i { color: var(--cc-cyan); font-size: .75rem; }
+
+    /* Mission/Vision cards */
+    .mv-card {
+        background: var(--cc-card);
+        border: 1px solid var(--cc-border);
+        border-radius: var(--cc-radius);
+        padding: 32px 28px; text-align: center;
+        transition: all .3s; height: 100%;
+    }
+    .mv-card:hover {
+        border-color: rgba(29,110,245,.4);
+        transform: translateY(-4px);
+        box-shadow: 0 0 30px rgba(29,110,245,.1);
+    }
+    .mv-icon {
+        width: 64px; height: 64px; margin: 0 auto 20px;
+        background: var(--cc-grad);
+        border-radius: 16px;
+        display: flex; align-items: center; justify-content: center;
+        font-size: 1.5rem; color: #fff;
+    }
+    .mv-card h3 {
+        font-family: 'Playfair Display', serif;
+        font-size: 1.2rem; font-weight: 700; color: var(--cc-white); margin-bottom: 12px;
+    }
+    .mv-card p { color: var(--cc-muted); font-size: .9rem; line-height: 1.8; margin: 0; }
+
+    /* Team */
+    .team-card {
+        background: var(--cc-card);
+        border: 1px solid var(--cc-border);
+        border-radius: var(--cc-radius);
+        padding: 32px 24px; text-align: center;
+        transition: all .3s; height: 100%;
+    }
+    .team-card:hover {
+        border-color: rgba(29,110,245,.4);
+        transform: translateY(-4px);
+        box-shadow: 0 0 30px rgba(29,110,245,.1);
+    }
+    .team-avatar {
+        width: 72px; height: 72px; border-radius: 50%;
+        background: var(--cc-grad);
+        display: flex; align-items: center; justify-content: center;
+        color: #fff; font-weight: 700; font-size: 1.1rem;
+        margin: 0 auto 16px;
+        border: 3px solid rgba(29,110,245,.3);
+    }
+    .team-card h4 {
+        font-family: 'Playfair Display', serif;
+        font-size: 1rem; font-weight: 700; color: var(--cc-white); margin-bottom: 6px;
+    }
+    .team-role {
+        display: inline-block;
+        background: rgba(29,110,245,.1);
+        border: 1px solid rgba(29,110,245,.2);
+        color: var(--cc-blue-lt);
+        padding: 3px 12px; border-radius: 50px;
+        font-size: .74rem; font-weight: 600; margin-bottom: 14px;
+    }
+    .team-card p { color: var(--cc-muted); font-size: .85rem; line-height: 1.7; margin: 0; }
+
+    /* CTA */
+    .about-cta {
+        background: linear-gradient(135deg, #0f2d6e 0%, #0a1f4e 100%);
+        position: relative; overflow: hidden;
+    }
+    .about-cta::before {
+        content: '';
+        position: absolute; inset: 0;
+        background: radial-gradient(ellipse at center, rgba(29,110,245,.2) 0%, transparent 65%);
+    }
+    </style>
+</head>
+<body>
+
+<!-- LOADER -->
+<div id="cc-loader">
+    <div class="loader-brand mb-3">Chedders<span>Computer</span></div>
+    <div class="loader-dots">
+        <div class="loader-dot"></div>
+        <div class="loader-dot"></div>
+        <div class="loader-dot"></div>
+    </div>
+</div>
+
+<!-- ============================================================
+     TOPBAR
+============================================================ -->
+<div class="cc-topbar d-none d-md-block">
+    <div class="container-xxl">
+        <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
+            <div class="d-flex gap-4 flex-wrap">
+                <span><i class="fas fa-map-marker-alt topbar-icon me-1"></i> 10 simbiat, abiola way, computer village ikeja beside zenith bank, Lagos Nigeria</span>
+                <span><i class="fas fa-phone-alt topbar-icon me-1"></i><a href="tel:+2349160006406">+234 916 000 6406</a></span>
+                <span><i class="fas fa-envelope topbar-icon me-1"></i><a href="mailto:support@chedderscomputer.store">support@chedderscomputer.store</a></span>
+            </div>
+            <div class="topbar-social d-flex gap-2">
+                <a href="https://www.facebook.com/share/17CfgRLadA/" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.instagram.com/chedderscomputer?igsh=Z2xjYmQ4OTV1MnI2" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" aria-label="Tiktok"><i class="fab fa-tiktok"></i></a>
+                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- NAVBAR -->
+<nav class="cc-navbar navbar navbar-expand-lg">
+    <div class="container-xxl">
+        <a href="../index.html" class="navbar-brand d-flex align-items-center gap-2 me-lg-4">
+            <div class="brand-icon"><i class="fas fa-laptop"></i></div>
+            <div>
+                <div class="brand-name">Chedders<span>Computer</span></div>
+                <div class="brand-domain">chedderscomputer.store</div>
+            </div>
+        </a>
+        <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#ccNav" aria-controls="ccNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="toggler-bar"></span><span class="toggler-bar"></span><span class="toggler-bar"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="ccNav">
+            <ul class="navbar-nav mx-auto gap-1">
+                <li class="nav-item"><a href="../index.html" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="about.html"   class="nav-link active">About</a></li>
+                <li class="nav-item"><a href="services.html" class="nav-link">Services</a></li>
+                <li class="nav-item"><a href="blog.html"    class="nav-link">Blog</a></li>
+                <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="d-flex align-items-center gap-3 mt-3 mt-lg-0">
+                <a href="shop.html" class="btn-cc-primary"><i class="fas fa-laptop"></i> Shop Now</a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+    <div class="container-xxl">
+        <h1>About Chedders Computer</h1>
+        <p>Lagos's most trusted source for brand-new, sealed laptops. Our story, our mission, our commitment.</p>
+        <div class="cc-breadcrumb">
+            <a href="../index.html">Home</a>
+            <i class="fas fa-chevron-right" style="font-size:.6rem"></i>
+            <span>About Us</span>
+        </div>
+    </div>
+</div>
+
+<!-- OUR STORY -->
+<section class="cc-section">
+    <div class="container-xxl">
+        <div class="row align-items-center gy-5">
+            <div class="col-lg-6 reveal">
+                <span class="section-tag d-inline-flex mb-3"><i class="fas fa-history me-2"></i>Our Story</span>
+                <h2 class="section-title mb-3">Born in <span>Lagos Island.</span><br>Built on Trust.</h2>
+                <p style="color:var(--cc-muted);font-size:.95rem;line-height:1.85;margin-bottom:1rem">
+                    Chedders Computer started with a simple belief: Nigerians deserve access to 100% genuine, brand-new technology without the uncertainty of grey-market deals or questionable refurbishments.
+                </p>
+                <p style="color:var(--cc-muted);font-size:.95rem;line-height:1.85;margin-bottom:1rem">
+                    Operating from BNB Mall in the heart of Golf Estate, Lagos Island, we've spent years building relationships with authorised suppliers and earning the trust of thousands of satisfied customers across Nigeria.
+                </p>
+                <p style="color:var(--cc-muted);font-size:.95rem;line-height:1.85;margin-bottom:1.8rem">
+                    We sell <strong style="color:var(--cc-white)">one thing</strong> — brand new laptops — and we do it better than anyone else. Every unit is factory-sealed, carries the full manufacturer's warranty, and is sourced from legitimate channels.
+                </p>
+                <div class="d-flex flex-wrap gap-2">
+                    <span class="value-chip"><i class="fas fa-check"></i> 100% Brand New</span>
+                    <span class="value-chip"><i class="fas fa-check"></i> Factory Sealed</span>
+                    <span class="value-chip"><i class="fas fa-check"></i> Full Warranty</span>
+                    <span class="value-chip"><i class="fas fa-check"></i> Expert Advice</span>
+                </div>
+            </div>
+            <div class="col-lg-5 offset-lg-1 reveal">
+                <div class="about-img-wrap">
+                    <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=700&q=80" alt="Chedders Computer Store">
+                    <div class="about-img-badge">
+                        <span class="badge-number">5+</span>
+                        <span class="badge-text">Years Trusted</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- MISSION / VISION / VALUES -->
+<section class="cc-section cc-section-alt">
+    <div class="container-xxl">
+        <div class="row justify-content-center text-center mb-5">
+            <div class="col-lg-7 reveal">
+                <span class="section-tag d-inline-flex mb-2"><i class="fas fa-star me-2"></i>What Drives Us</span>
+                <h2 class="section-title mb-2">Purpose, <span>Vision & Values</span></h2>
+            </div>
+        </div>
+        <div class="row g-4">
+            <div class="col-md-4 reveal">
+                <div class="mv-card">
+                    <div class="mv-icon"><i class="fas fa-bullseye"></i></div>
+                    <h3>Our Mission</h3>
+                    <p>To provide every Nigerian — student, professional, or business — with seamless access to authentic, brand-new laptops at fair prices, backed by real support and real accountability.</p>
+                </div>
+            </div>
+            <div class="col-md-4 reveal">
+                <div class="mv-card">
+                    <div class="mv-icon"><i class="fas fa-eye"></i></div>
+                    <h3>Our Vision</h3>
+                    <p>To be the most trusted technology retailer in West Africa — known for integrity, product authenticity, and a customer experience that sets the standard for the industry.</p>
+                </div>
+            </div>
+            <div class="col-md-4 reveal">
+                <div class="mv-card">
+                    <div class="mv-icon"><i class="fas fa-heart"></i></div>
+                    <h3>Our Values</h3>
+                    <p>Integrity in every transaction. Transparency in every price. Respect for every customer. We build relationships, not just sales — and that makes all the difference.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- TEAM -->
+<section class="cc-section">
+    <div class="container-xxl">
+        <div class="row justify-content-center text-center mb-5">
+            <div class="col-lg-7 reveal">
+                <span class="section-tag d-inline-flex mb-2"><i class="fas fa-users me-2"></i>The Team</span>
+                <h2 class="section-title mb-2">The People Behind <span>Chedders Computer</span></h2>
+                <p class="section-sub mx-auto">Passionate tech enthusiasts dedicated to getting you the right laptop.</p>
+            </div>
+        </div>
+        <div class="row g-4">
+            <div class="col-sm-6 col-lg-3 reveal">
+                <div class="team-card">
+                    <div class="team-avatar">CO</div>
+                    <h4>Chukwuemeka Obi</h4>
+                    <span class="team-role">Founder &amp; CEO</span>
+                    <p>5+ years in tech retail. Built Chedders Computer from a single stall to Lagos's go-to laptop store.</p>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-3 reveal">
+                <div class="team-card">
+                    <div class="team-avatar">AN</div>
+                    <h4>Adaeze Nwofor</h4>
+                    <span class="team-role">Sales &amp; Customer Experience</span>
+                    <p>The voice of Chedders Computer. Adaeze ensures every customer finds their perfect match.</p>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-3 reveal">
+                <div class="team-card">
+                    <div class="team-avatar">FB</div>
+                    <h4>Femi Babatunde</h4>
+                    <span class="team-role">Technical Specialist</span>
+                    <p>Our resident tech guru. Femi helps customers understand specs and make confident decisions.</p>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-3 reveal">
+                <div class="team-card">
+                    <div class="team-avatar">TK</div>
+                    <h4>Temi Karimu</h4>
+                    <span class="team-role">Logistics &amp; Delivery</span>
+                    <p>Ensures every order arrives safely, on time, and in perfect condition — anywhere in Nigeria.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="about-cta cc-section">
+    <div class="container-xxl position-relative text-center" style="z-index:1">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 reveal">
+                <h2 class="cta-title mb-3">Ready to Find Your Perfect Laptop?</h2>
+                <p style="color:rgba(255,255,255,.7);font-size:1.05rem;margin-bottom:2rem">
+                    Browse our full collection of brand-new, sealed laptops — all genuine, all warranted.
+                </p>
+                <div class="d-flex gap-3 justify-content-center flex-wrap">
+                    <a href="shop.html" class="btn-cc-primary" style="padding:13px 32px;font-size:.98rem">
+                        <i class="fas fa-laptop"></i> Browse Laptops
+                    </a>
+                    <a href="contact.html" class="btn-cc-outline" style="padding:11px 30px;font-size:.98rem;color:#fff;border-color:rgba(255,255,255,.35)">
+                        Get in Touch
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================
+     FOOTER
+============================================================ -->
+<footer class="cc-footer pt-5">
+    <div class="container-xxl">
+        <div class="row gy-5">
+            <!-- Brand -->
+            <div class="col-lg-4">
+                <div class="d-flex align-items-center gap-2 mb-3">
+                    <div class="brand-icon"><i class="fas fa-laptop"></i></div>
+                    <div>
+                        <div class="footer-brand-name">Chedders<span>Computer</span></div>
+                        <div class="brand-domain">chedderscomputer.store</div>
+                    </div>
+                </div>
+                <p class="footer-about mb-3">
+                    Lagos's trusted destination for 100% brand-new, sealed laptops. From the heart of Lagos Island,
+                    we deliver quality technology to your doorstep across Nigeria.
+                </p>
+                <div class="footer-social d-flex gap-2">
+                    <a href="https://www.facebook.com/share/17CfgRLadA/" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/chedderscomputer?igsh=Z2xjYmQ4OTV1MnI2" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="Tiktok"><i class="fab fa-tiktok"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            <!-- Quick Links -->
+            <div class="col-6 col-lg-2">
+                <h6 class="footer-heading">Quick Links</h6>
+                <ul class="footer-links">
+                    <li><a href="index.html"><i class="fas fa-angle-right"></i> Home</a></li>
+                    <li><a href="pages/about.html"><i class="fas fa-angle-right"></i> About Us</a></li>
+                    <li><a href="pages/services.html"><i class="fas fa-angle-right"></i> Services</a></li>
+                    <li><a href="pages/shop.html"><i class="fas fa-angle-right"></i> Shop</a></li>
+                    <li><a href="pages/blog.html"><i class="fas fa-angle-right"></i> Blog</a></li>
+                    <li><a href="pages/contact.html"><i class="fas fa-angle-right"></i> Contact</a></li>
+                </ul>
+            </div>
+            <!-- Help -->
+            <div class="col-6 col-lg-2">
+                <h6 class="footer-heading">Help</h6>
+                <ul class="footer-links">
+                    <li><a href="pages/faqs.html"><i class="fas fa-angle-right"></i> FAQs</a></li>
+                    <li><a href="pages/shippingpolicy.html"><i class="fas fa-angle-right"></i> Shipping Policy</a></li>
+                    <li><a href="pages/returnpolicy.html"><i class="fas fa-angle-right"></i> Return Policy</a></li>
+                    <li><a href="pages/warranty.html"><i class="fas fa-angle-right"></i> Warranty</a></li>
+                    <li><a href="pages/privacypolicy.html"><i class="fas fa-angle-right"></i> Privacy Policy</a></li>
+                    <li><a href="pages/termsofuse.html"><i class="fas fa-angle-right"></i> Terms of Use</a></li>
+                </ul>
+            </div>
+            <!-- Contact -->
+            <div class="col-lg-4">
+                <h6 class="footer-heading">Contact Us</h6>
+                <div class="footer-contact-item"><i class="fas fa-map-marker-alt"></i><span>No 10 simbiat, abiola way, computer village ikeja beside zenith bank, Lagos Nigeria</span></div>
+                <div class="footer-contact-item"><i class="fas fa-phone-alt"></i><a href="tel:+2349160006406">+234 916 000 6406</a></div>
+                <div class="footer-contact-item"><i class="fas fa-envelope"></i><a href="mailto:hello@chedderscomputer.store">support@chedderscomputer.store</a></div>
+                <div class="footer-contact-item"><i class="fas fa-clock"></i><span>Mon – Sat: 9am – 7pm</span></div>
+            </div>
+        </div>
+
+        <hr style="border-color:var(--cc-border);margin-top:3rem">
+        <div class="footer-bottom d-flex flex-column flex-sm-row align-items-center justify-content-between gap-2">
+            <div>© 2025 <a href="index.html">Chedders Computer</a>. All rights reserved. | chedderscomputer.store</div>
+            <div><i class="fas fa-lock me-1"></i> Secure Shopping</div>
+        </div>
+    </div>
+</footer>
+
+<!-- ============================================================
+     whatsapp-float
+============================================================ -->
+<a href="https://wa.me/2349060006406?text=Hello%20Chedders%20Computers,%20I%20want%20to%20make%20an%20enquiry."
+   target="_blank"
+   class="whatsapp-float">
+   <i class="fab fa-whatsapp"></i>
+</a>
+<button class="back-to-top" id="backToTop" aria-label="Back to top">
+    <i class="fas fa-arrow-up"></i>
+</button>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../js/main.js"></script>
+</body>
+</html>

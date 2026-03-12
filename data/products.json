@@ -1,0 +1,650 @@
+[
+  {
+    "id": 1,
+    "type": "laptop",
+    "brand": "Apple",
+    "brand_key": "apple",
+    "name": "MacBook Pro 16\" M3 Max",
+    "images": [
+      "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=600&q=80",
+      "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=600&q=80",
+      "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=600&q=80",
+      "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=600&q=80",
+      "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=600&q=80"
+    ],
+    "youtube": "wfbL-7K8P0k",
+    "basePrice": 2850000,
+    "processor": "Apple M3 Max Chip",
+    "display": "16.2\" Liquid Retina XDR",
+    "badge": "Best Seller",
+    "rating": 4.9,
+    "reviews": 234,
+    "position": 1,
+    "config": {
+      "ram": ["18GB", "36GB", "48GB", "96GB"],
+      "storage": ["512GB SSD", "1TB SSD", "2TB SSD", "4TB SSD"],
+      "touch": false
+    }
+  },
+  {
+    "id": 2,
+    "type": "laptop",
+    "brand": "Dell",
+    "brand_key": "dell",
+    "name": "Dell XPS 15 9530 OLED",
+    "images": [
+      "https://images.unsplash.com/photo-1593642632823-8f785ba67e45?w=600&q=80",
+      "https://images.unsplash.com/photo-1593642632823-8f785ba67e45?w=600&q=80",
+      "https://images.unsplash.com/photo-1593642632823-8f785ba67e45?w=600&q=80",
+      "https://images.unsplash.com/photo-1593642632823-8f785ba67e45?w=600&q=80",
+      "https://images.unsplash.com/photo-1593642632823-8f785ba67e45?w=600&q=80"
+    ],
+    "youtube": "N_mO7Apx4Lw",
+    "basePrice": 1850000,
+    "processor": "Intel Core i9-13900H",
+    "display": "15.6\" 3.5K OLED Touch",
+    "badge": "Popular",
+    "rating": 4.7,
+    "reviews": 189,
+    "position": 2,
+    "config": {
+      "ram": ["16GB", "32GB", "64GB"],
+      "storage": ["512GB SSD", "1TB SSD", "2TB SSD"],
+      "touch": true
+    }
+  },
+  {
+    "id": 3,
+    "type": "laptop",
+    "brand": "Lenovo",
+    "brand_key": "lenovo",
+    "name": "ThinkPad X1 Carbon Gen 11",
+    "images": [
+      "https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?w=600&q=80",
+      "https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?w=600&q=80",
+      "https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?w=600&q=80",
+      "https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?w=600&q=80",
+      "https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?w=600&q=80"
+    ],
+    "youtube": "XqYv1_V_v6A",
+    "basePrice": 1250000,
+    "processor": "Intel Core i7-1365U",
+    "display": "14\" IPS 2.8K Anti-glare",
+    "badge": "Business",
+    "rating": 4.6,
+    "reviews": 156,
+    "position": 3,
+    "config": {
+      "ram": ["16GB", "32GB"],
+      "storage": ["512GB SSD", "1TB SSD"],
+      "touch": true
+    }
+  },
+  {
+    "id": 4,
+    "type": "laptop",
+    "brand": "ASUS",
+    "brand_key": "asus",
+    "name": "ROG Zephyrus G14 2024",
+    "images": [
+      "https://images.unsplash.com/photo-1603302576837-37561b2e2302?w=600&q=80",
+      "https://images.unsplash.com/photo-1603302576837-37561b2e2302?w=600&q=80",
+      "https://images.unsplash.com/photo-1603302576837-37561b2e2302?w=600&q=80",
+      "https://images.unsplash.com/photo-1603302576837-37561b2e2302?w=600&q=80",
+      "https://images.unsplash.com/photo-1603302576837-37561b2e2302?w=600&q=80"
+    ],
+    "youtube": "dQw4w9WgXcQ",
+    "basePrice": 1680000,
+    "processor": "AMD Ryzen 9 8945HS",
+    "display": "14\" QHD+ 165Hz OLED",
+    "badge": "Gaming",
+    "rating": 4.8,
+    "reviews": 312,
+    "position": 4,
+    "config": {
+      "ram": ["16GB", "32GB"],
+      "storage": ["512GB SSD", "1TB SSD", "2TB SSD"],
+      "touch": false
+    }
+  },
+  {
+    "id": 5,
+    "type": "laptop",
+    "brand": "HP",
+    "brand_key": "hp",
+    "name": "HP Pavilion 15 Plus",
+    "images": [
+      "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=600&q=80",
+      "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=600&q=80",
+      "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=600&q=80",
+      "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=600&q=80",
+      "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=600&q=80"
+    ],
+    "youtube": "zO5-8pSmU2I",
+    "basePrice": 680000,
+    "processor": "Intel Core i5-1335U",
+    "display": "15.6\" FHD IPS",
+    "badge": "Budget",
+    "rating": 4.3,
+    "reviews": 98,
+    "position": 5,
+    "config": {
+      "ram": ["8GB", "16GB"],
+      "storage": ["256GB SSD", "512GB SSD", "1TB HDD", "1TB SSD"],
+      "touch": true
+    }
+  },
+  {
+    "id": 6,
+    "type": "laptop",
+    "brand": "Microsoft",
+    "brand_key": "microsoft",
+    "name": "Surface Laptop 5",
+    "images": [
+      "https://images.unsplash.com/photo-1611186871525-3e97c64a9601?w=600&q=80",
+      "https://images.unsplash.com/photo-1611186871525-3e97c64a9601?w=600&q=80",
+      "https://images.unsplash.com/photo-1611186871525-3e97c64a9601?w=600&q=80",
+      "https://images.unsplash.com/photo-1611186871525-3e97c64a9601?w=600&q=80",
+      "https://images.unsplash.com/photo-1611186871525-3e97c64a9601?w=600&q=80"
+    ],
+    "youtube": "K_T8T9hOxy4",
+    "basePrice": 1150000,
+    "processor": "Intel Core i7-1265U",
+    "display": "13.5\" PixelSense Touch",
+    "badge": "Touch",
+    "rating": 4.5,
+    "reviews": 145,
+    "position": 6,
+    "config": {
+      "ram": ["16GB", "32GB"],
+      "storage": ["512GB SSD", "1TB SSD"],
+      "touch": true
+    }
+  },
+  {
+    "id": 7,
+    "type": "laptop",
+    "brand": "Apple",
+    "brand_key": "apple",
+    "name": "MacBook Air M3",
+    "images": [
+      "https://images.unsplash.com/photo-1541807084-5c52b6b3adef?w=600&q=80",
+      "https://images.unsplash.com/photo-1541807084-5c52b6b3adef?w=600&q=80",
+      "https://images.unsplash.com/photo-1541807084-5c52b6b3adef?w=600&q=80",
+      "https://images.unsplash.com/photo-1541807084-5c52b6b3adef?w=600&q=80",
+      "https://images.unsplash.com/photo-1541807084-5c52b6b3adef?w=600&q=80"
+    ],
+    "youtube": "0pW_atpE67I",
+    "basePrice": 1480000,
+    "processor": "Apple M3 Chip",
+    "display": "13.6\" Liquid Retina",
+    "badge": "Lightweight",
+    "rating": 4.8,
+    "reviews": 420,
+    "position": 7,
+    "config": {
+      "ram": ["8GB", "16GB", "24GB"],
+      "storage": ["256GB SSD", "512GB SSD", "1TB SSD", "2TB SSD"],
+      "touch": false
+    }
+  },
+  {
+    "id": 8,
+    "type": "laptop",
+    "brand": "ASUS",
+    "brand_key": "asus",
+    "name": "VivoBook 15 OLED",
+    "images": [
+      "https://images.unsplash.com/photo-1525547719571-a2d4ac8945e2?w=600&q=80",
+      "https://images.unsplash.com/photo-1525547719571-a2d4ac8945e2?w=600&q=80",
+      "https://images.unsplash.com/photo-1525547719571-a2d4ac8945e2?w=600&q=80",
+      "https://images.unsplash.com/photo-1525547719571-a2d4ac8945e2?w=600&q=80",
+      "https://images.unsplash.com/photo-1525547719571-a2d4ac8945e2?w=600&q=80"
+    ],
+    "youtube": "jNQXAC9IVRw",
+    "basePrice": 560000,
+    "processor": "AMD Ryzen 5 7520U",
+    "display": "15.6\" FHD OLED",
+    "badge": "Value",
+    "rating": 4.2,
+    "reviews": 67,
+    "position": 8,
+    "config": {
+      "ram": ["8GB", "16GB"],
+      "storage": ["256GB SSD", "512GB SSD"],
+      "touch": false
+    }
+  },
+  {
+    "id": 9,
+    "type": "laptop",
+    "brand": "Dell",
+    "brand_key": "dell",
+    "name": "Inspiron 16 Plus",
+    "images": [
+      "https://images.unsplash.com/photo-1484788984921-03950022c9ef?w=600&q=80",
+      "https://images.unsplash.com/photo-1484788984921-03950022c9ef?w=600&q=80",
+      "https://images.unsplash.com/photo-1484788984921-03950022c9ef?w=600&q=80",
+      "https://images.unsplash.com/photo-1484788984921-03950022c9ef?w=600&q=80",
+      "https://images.unsplash.com/photo-1484788984921-03950022c9ef?w=600&q=80"
+    ],
+    "youtube": "LN4r_-2gBpY",
+    "basePrice": 920000,
+    "processor": "Intel Core i7-12700H",
+    "display": "16\" QHD+ 120Hz",
+    "badge": "Creator",
+    "rating": 4.4,
+    "reviews": 112,
+    "position": 9,
+    "config": {
+      "ram": ["16GB", "32GB"],
+      "storage": ["512GB SSD", "1TB SSD"],
+      "touch": false
+    }
+  },
+  {
+    "id": 10,
+    "type": "laptop",
+    "brand": "Acer",
+    "brand_key": "acer",
+    "name": "Predator Helios 18",
+    "images": [
+      "https://images.unsplash.com/photo-1593642634524-b40b5baae6bb?w=600&q=80",
+      "https://images.unsplash.com/photo-1593642634524-b40b5baae6bb?w=600&q=80",
+      "https://images.unsplash.com/photo-1593642634524-b40b5baae6bb?w=600&q=80",
+      "https://images.unsplash.com/photo-1593642634524-b40b5baae6bb?w=600&q=80",
+      "https://images.unsplash.com/photo-1593642634524-b40b5baae6bb?w=600&q=80"
+    ],
+    "youtube": "M7lc1UVf-VE",
+    "basePrice": 2100000,
+    "processor": "Intel Core i9-14900HX",
+    "display": "18\" QHD+ 250Hz IPS",
+    "badge": "Gaming",
+    "rating": 4.6,
+    "reviews": 88,
+    "position": 10,
+    "config": {
+      "ram": ["16GB", "32GB", "64GB"],
+      "storage": ["1TB SSD", "2TB SSD"],
+      "touch": false
+    }
+  },
+  {
+    "id": 101,
+    "type": "desktop",
+    "brand": "Apple",
+    "brand_key": "apple",
+    "name": "Apple iMac 24\" M3",
+    "images": [
+      "https://images.unsplash.com/photo-1547082299-de196ea013d6?w=600&q=80",
+      "https://images.unsplash.com/photo-1547082299-de196ea013d6?w=600&q=80",
+      "https://images.unsplash.com/photo-1547082299-de196ea013d6?w=600&q=80",
+      "https://images.unsplash.com/photo-1547082299-de196ea013d6?w=600&q=80",
+      "https://images.unsplash.com/photo-1547082299-de196ea013d6?w=600&q=80"
+    ],
+    "youtube": "r_S_6B4E_Xk",
+    "basePrice": 2600000,
+    "processor": "Apple M3 Chip",
+    "display": "24\" 4.5K Retina (Built-in)",
+    "badge": "New",
+    "rating": 4.9,
+    "reviews": 178,
+    "position": 11,
+    "config": {
+      "ram": ["8GB", "16GB", "24GB"],
+      "storage": ["256GB SSD", "512GB SSD", "1TB SSD", "2TB SSD"],
+      "touch": false
+    }
+  },
+  {
+    "id": 102,
+    "type": "desktop",
+    "brand": "Dell",
+    "brand_key": "dell",
+    "name": "Dell OptiPlex 7020",
+    "images": [
+      "https://images.unsplash.com/photo-1593640408182-31c228f6d76a?w=600&q=80",
+      "https://images.unsplash.com/photo-1593640408182-31c228f6d76a?w=600&q=80",
+      "https://images.unsplash.com/photo-1593640408182-31c228f6d76a?w=600&q=80",
+      "https://images.unsplash.com/photo-1593640408182-31c228f6d76a?w=600&q=80",
+      "https://images.unsplash.com/photo-1593640408182-31c228f6d76a?w=600&q=80"
+    ],
+    "youtube": "fW_K91z5S60",
+    "basePrice": 780000,
+    "processor": "Intel Core i5-14500",
+    "display": "Monitor Sold Separately",
+    "badge": "Business",
+    "rating": 4.5,
+    "reviews": 94,
+    "position": 12,
+    "config": {
+      "ram": ["8GB", "16GB", "32GB"],
+      "storage": ["256GB SSD", "512GB SSD", "1TB SSD", "1TB HDD", "2TB HDD"],
+      "touch": false
+    }
+  },
+  {
+    "id": 103,
+    "type": "desktop",
+    "brand": "HP",
+    "brand_key": "hp",
+    "name": "HP EliteDesk 800 G9",
+    "images": [
+      "https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=600&q=80",
+      "https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=600&q=80",
+      "https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=600&q=80",
+      "https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=600&q=80",
+      "https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=600&q=80"
+    ],
+    "youtube": "o8p9TzY5-0U",
+    "basePrice": 950000,
+    "processor": "Intel Core i7-12700",
+    "display": "Monitor Sold Separately",
+    "badge": "Corporate",
+    "rating": 4.6,
+    "reviews": 63,
+    "position": 13,
+    "config": {
+      "ram": ["16GB", "32GB", "64GB"],
+      "storage": ["512GB SSD", "1TB SSD", "2TB SSD"],
+      "touch": false
+    }
+  },
+  {
+    "id": 104,
+    "type": "desktop",
+    "brand": "Lenovo",
+    "brand_key": "lenovo",
+    "name": "Lenovo ThinkCentre M75s",
+    "images": [
+      "https://images.unsplash.com/photo-1616588589676-62b3bd4ff6d2?w=600&q=80",
+      "https://images.unsplash.com/photo-1616588589676-62b3bd4ff6d2?w=600&q=80",
+      "https://images.unsplash.com/photo-1616588589676-62b3bd4ff6d2?w=600&q=80",
+      "https://images.unsplash.com/photo-1616588589676-62b3bd4ff6d2?w=600&q=80",
+      "https://images.unsplash.com/photo-1616588589676-62b3bd4ff6d2?w=600&q=80"
+    ],
+    "youtube": "iG9CE55wbtY",
+    "basePrice": 690000,
+    "processor": "AMD Ryzen 5 Pro 4650G",
+    "display": "Monitor Sold Separately",
+    "badge": "Compact",
+    "rating": 4.4,
+    "reviews": 51,
+    "position": 14,
+    "config": {
+      "ram": ["8GB", "16GB", "32GB"],
+      "storage": ["256GB SSD", "512GB SSD", "1TB HDD"],
+      "touch": false
+    }
+  },
+  {
+    "id": 105,
+    "type": "desktop",
+    "brand": "ASUS",
+    "brand_key": "asus",
+    "name": "ASUS ROG Strix GT15",
+    "images": [
+      "https://images.unsplash.com/photo-1591488320449-011701bb6704?w=600&q=80",
+      "https://images.unsplash.com/photo-1591488320449-011701bb6704?w=600&q=80",
+      "https://images.unsplash.com/photo-1591488320449-011701bb6704?w=600&q=80",
+      "https://images.unsplash.com/photo-1591488320449-011701bb6704?w=600&q=80",
+      "https://images.unsplash.com/photo-1591488320449-011701bb6704?w=600&q=80"
+    ],
+    "youtube": "VpX6_f5z0qM",
+    "basePrice": 1750000,
+    "processor": "Intel Core i9-12900K",
+    "display": "Monitor Sold Separately",
+    "badge": "Gaming",
+    "rating": 4.7,
+    "reviews": 109,
+    "position": 15,
+    "config": {
+      "ram": ["16GB", "32GB", "64GB"],
+      "storage": ["1TB SSD", "2TB SSD", "4TB SSD"],
+      "touch": false
+    }
+  },
+  {
+    "id": 201,
+    "type": "server",
+    "brand": "Dell",
+    "brand_key": "dell",
+    "name": "Dell PowerEdge T150",
+    "images": [
+      "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=600&q=80",
+      "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=600&q=80",
+      "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=600&q=80",
+      "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=600&q=80",
+      "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=600&q=80"
+    ],
+    "youtube": "H8-aE7vY-4o",
+    "basePrice": 2200000,
+    "processor": "Intel Xeon E-2334",
+    "display": "Tower Server – Headless",
+    "badge": "Entry Server",
+    "rating": 4.7,
+    "reviews": 42,
+    "position": 16,
+    "config": {
+      "ram": ["16GB ECC", "32GB ECC", "64GB ECC"],
+      "storage": ["1TB HDD", "2TB HDD", "1TB SSD", "2TB SSD", "4TB SSD"],
+      "touch": false
+    }
+  },
+  {
+    "id": 202,
+    "type": "server",
+    "brand": "HP",
+    "brand_key": "hp",
+    "name": "HP ProLiant ML110 Gen10",
+    "images": [
+      "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80",
+      "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80",
+      "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80",
+      "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80",
+      "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80"
+    ],
+    "youtube": "y-Yn_e1y49I",
+    "basePrice": 2850000,
+    "processor": "Intel Xeon Bronze 3206R",
+    "display": "Tower Server – Headless",
+    "badge": "Mid-Range",
+    "rating": 4.6,
+    "reviews": 35,
+    "position": 17,
+    "config": {
+      "ram": ["16GB ECC", "32GB ECC", "64GB ECC", "128GB ECC"],
+      "storage": ["1TB HDD", "2TB HDD", "4TB HDD", "2TB SSD", "4TB SSD"],
+      "touch": false
+    }
+  },
+  {
+    "id": 203,
+    "type": "server",
+    "brand": "Lenovo",
+    "brand_key": "lenovo",
+    "name": "Lenovo ThinkSystem SR530",
+    "images": [
+      "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=600&q=80",
+      "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=600&q=80",
+      "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=600&q=80",
+      "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=600&q=80",
+      "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=600&q=80"
+    ],
+    "youtube": "q3-hS6hW-nQ",
+    "basePrice": 4500000,
+    "processor": "Intel Xeon Silver 4208",
+    "display": "1U Rack Server – Headless",
+    "badge": "Rack Server",
+    "rating": 4.8,
+    "reviews": 28,
+    "position": 18,
+    "config": {
+      "ram": ["32GB ECC", "64GB ECC", "128GB ECC", "256GB ECC"],
+      "storage": ["2TB SSD", "4TB SSD", "8TB SSD", "2TB HDD RAID"],
+      "touch": false
+    }
+  },
+  {
+    "id": 204,
+    "type": "server",
+    "brand": "Dell",
+    "brand_key": "dell",
+    "name": "Dell PowerEdge R550 Rack",
+    "images": [
+      "https://images.unsplash.com/photo-1573164713988-8665fc963095?w=600&q=80",
+      "https://images.unsplash.com/photo-1573164713988-8665fc963095?w=600&q=80",
+      "https://images.unsplash.com/photo-1573164713988-8665fc963095?w=600&q=80",
+      "https://images.unsplash.com/photo-1573164713988-8665fc963095?w=600&q=80",
+      "https://images.unsplash.com/photo-1573164713988-8665fc963095?w=600&q=80"
+    ],
+    "youtube": "Pj1Z6vU5N3E",
+    "basePrice": 6800000,
+    "processor": "Dual Intel Xeon Silver 4314",
+    "display": "2U Rack Server – Headless",
+    "badge": "Enterprise",
+    "rating": 4.9,
+    "reviews": 19,
+    "position": 19,
+    "config": {
+      "ram": ["64GB ECC", "128GB ECC", "256GB ECC", "512GB ECC"],
+      "storage": ["4TB SSD", "8TB SSD", "10TB NVMe", "10TB HDD RAID"],
+      "touch": false
+    }
+  },
+  {
+    "id": 301,
+    "type": "printer",
+    "brand": "HP",
+    "brand_key": "hp",
+    "name": "HP LaserJet Pro M404dn",
+    "images": [
+      "https://images.unsplash.com/photo-1612815154858-60aa4c59eaa6?w=600&q=80",
+      "https://images.unsplash.com/photo-1612815154858-60aa4c59eaa6?w=600&q=80",
+      "https://images.unsplash.com/photo-1612815154858-60aa4c59eaa6?w=600&q=80",
+      "https://images.unsplash.com/photo-1612815154858-60aa4c59eaa6?w=600&q=80",
+      "https://images.unsplash.com/photo-1612815154858-60aa4c59eaa6?w=600&q=80"
+    ],
+    "youtube": "Z3N2K4tL-YI",
+    "basePrice": 310000,
+    "processor": "Mono Laser · 40ppm",
+    "display": "2.7\" Colour Touchscreen",
+    "badge": "Laser",
+    "rating": 4.5,
+    "reviews": 76,
+    "position": 20,
+    "config": {
+      "ram": ["256MB"],
+      "storage": ["N/A – Printer"],
+      "touch": false
+    }
+  },
+  {
+    "id": 302,
+    "type": "printer",
+    "brand": "Epson",
+    "brand_key": "epson",
+    "name": "Epson EcoTank ET-4850",
+    "images": [
+      "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80",
+      "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80",
+      "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80",
+      "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80",
+      "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80"
+    ],
+    "youtube": "vW3P-q-B9U4",
+    "basePrice": 185000,
+    "processor": "Colour Inkjet · 15ppm",
+    "display": "2.4\" Colour Touchscreen",
+    "badge": "Eco Tank",
+    "rating": 4.6,
+    "reviews": 134,
+    "position": 21,
+    "config": {
+      "ram": ["64MB"],
+      "storage": ["N/A – Printer"],
+      "touch": false
+    }
+  },
+  {
+    "id": 303,
+    "type": "printer",
+    "brand": "Canon",
+    "brand_key": "canon",
+    "name": "Canon imageCLASS MF445dw",
+    "images": [
+      "https://images.unsplash.com/photo-1596495578065-6e0763fa1178?w=600&q=80",
+      "https://images.unsplash.com/photo-1596495578065-6e0763fa1178?w=600&q=80",
+      "https://images.unsplash.com/photo-1596495578065-6e0763fa1178?w=600&q=80",
+      "https://images.unsplash.com/photo-1596495578065-6e0763fa1178?w=600&q=80",
+      "https://images.unsplash.com/photo-1596495578065-6e0763fa1178?w=600&q=80"
+    ],
+    "youtube": "R-B6S8Zf9Hk",
+    "basePrice": 245000,
+    "processor": "Mono Laser · 40ppm · ADF",
+    "display": "5\" Colour Touch LCD",
+    "badge": "All-in-One",
+    "rating": 4.7,
+    "reviews": 98,
+    "position": 22,
+    "config": {
+      "ram": ["1GB"],
+      "storage": ["N/A – Printer"],
+      "touch": false
+    }
+  },
+  {
+    "id": 304,
+    "type": "printer",
+    "brand": "HP",
+    "brand_key": "hp",
+    "name": "HP OfficeJet Pro 9015e",
+    "images": [
+      "https://images.unsplash.com/photo-1551524559-8af4e6624178?w=600&q=80",
+      "https://images.unsplash.com/photo-1551524559-8af4e6624178?w=600&q=80",
+      "https://images.unsplash.com/photo-1551524559-8af4e6624178?w=600&q=80",
+      "https://images.unsplash.com/photo-1551524559-8af4e6624178?w=600&q=80",
+      "https://images.unsplash.com/photo-1551524559-8af4e6624178?w=600&q=80"
+    ],
+    "youtube": "pU9L-N8yS7M",
+    "basePrice": 220000,
+    "processor": "Colour Inkjet · 22ppm",
+    "display": "2.7\" Colour Touchscreen",
+    "badge": "Wireless",
+    "rating": 4.4,
+    "reviews": 87,
+    "position": 23,
+    "config": {
+      "ram": ["512MB"],
+      "storage": ["N/A – Printer"],
+      "touch": false
+    }
+  },
+  {
+    "id": 305,
+    "type": "printer",
+    "brand": "Epson",
+    "brand_key": "epson",
+    "name": "Epson WorkForce WF-7840",
+    "images": [
+      "https://images.unsplash.com/photo-1612815154858-60aa4c59eaa6?w=600&q=80",
+      "https://images.unsplash.com/photo-1612815154858-60aa4c59eaa6?w=600&q=80",
+      "https://images.unsplash.com/photo-1612815154858-60aa4c59eaa6?w=600&q=80",
+      "https://images.unsplash.com/photo-1612815154858-60aa4c59eaa6?w=600&q=80",
+      "https://images.unsplash.com/photo-1612815154858-60aa4c59eaa6?w=600&q=80"
+    ],
+    "youtube": "x-K6C4A5-Ew",
+    "basePrice": 195000,
+    "processor": "Colour Inkjet · A3 · 18ppm",
+    "display": "4.3\" Colour Touchscreen",
+    "badge": "A3 Format",
+    "rating": 4.5,
+    "reviews": 59,
+    "position": 24,
+    "config": {
+      "ram": ["256MB"],
+      "storage": ["N/A – Printer"],
+      "touch": false
+    }
+  }
+]

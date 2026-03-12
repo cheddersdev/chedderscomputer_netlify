@@ -1,0 +1,384 @@
+/* ============================================================
+   CHEDDERS COMPUTER — HERO SECTION
+   Standalone: link this AFTER style.css in index.html
+   <link href="css/hero.css" rel="stylesheet">
+============================================================ */
+
+/* ============================================================
+   HERO BACKGROUND — THREE MODES
+   Only ONE mode should be active at a time.
+   To switch: uncomment the mode you want, comment the rest.
+   ============================================================
+
+   ACTIVE NOW → MODE 2: IMAGE BACKGROUND
+   ─────────────────────────────────────────────────────────── */
+
+/* ┌─────────────────────────────────────────────────────────┐
+   │  MODE 1 — SOLID COLOUR  (currently OFF — uncomment to use)
+   └─────────────────────────────────────────────────────────┘ */
+/*
+.hero {
+    background: var(--cc-navy);
+    position: relative;
+    overflow: hidden;
+    padding: 60px 0 52px;
+}
+.hero-bg-image  { display: none; }
+.hero-bg-video  { display: none; }
+.hero-orb       { display: block; }
+.hero-grid      { display: block; }
+*/
+
+/* ┌─────────────────────────────────────────────────────────┐
+   │  MODE 2 — IMAGE BACKGROUND  ✅ ACTIVE
+   │  Store your image at: assets/images/hero-bg.jpg
+   │  (or hero-bg.png / hero-bg.webp — just match the src below)
+   └─────────────────────────────────────────────────────────┘ */
+.hero {
+    background: var(--cc-navy); /* fallback while image loads */
+    position: relative;
+    overflow: hidden;
+    padding: 60px 0 52px;
+}
+/* The image element — scales to cover every screen */
+.hero-bg-image {
+    position: absolute; inset: 0; z-index: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;       /* fills the box, no distortion */
+    object-position: center; /* keep the focal point centred */
+    display: block;
+    pointer-events: none;
+    /* subtle scale-in on load */
+    animation: heroBgIn 1.4s ease both;
+}
+/* Dark overlay so text stays readable over any photo */
+.hero-bg-image::after { display: none; } /* overlay is on .hero::after below */
+.hero::after {
+    content: '';
+    position: absolute; inset: 0; z-index: 0;
+    /* Adjust the alpha (0.62) to make image lighter or darker */
+    background: linear-gradient(
+        135deg,
+        rgba(5, 14, 36, 0.75) 0%,
+        rgba(5, 14, 36, 0.55) 50%,
+        rgba(5, 14, 36, 0.70) 100%
+    );
+    pointer-events: none;
+}
+/* Keep orbs & grid for extra depth — semi-transparent on top of image */
+.hero-orb { opacity: .55; }
+.hero-grid { opacity: .40; }
+/* Hide video when image is active */
+.hero-bg-video { display: none !important; }
+
+@keyframes heroBgIn {
+    from { opacity: 0; transform: scale(1.06); }
+    to   { opacity: 1; transform: scale(1); }
+}
+
+/* ┌─────────────────────────────────────────────────────────┐
+   │  MODE 3 — VIDEO BACKGROUND  (currently OFF — uncomment to use)
+   │  Store your video at: assets/videos/hero-bg.mp4
+   │  Recommended: also provide a .webm for better browser support
+   │  Keep video short (5–15s looping), compressed under 8MB
+   └─────────────────────────────────────────────────────────┘ */
+/*
+.hero {
+    background: var(--cc-navy);
+    position: relative;
+    overflow: hidden;
+    padding: 60px 0 52px;
+}
+.hero-bg-video {
+    position: absolute; inset: 0; z-index: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+    pointer-events: none;
+}
+.hero::after {
+    content: '';
+    position: absolute; inset: 0; z-index: 0;
+    background: linear-gradient(
+        135deg,
+        rgba(5, 14, 36, 0.78) 0%,
+        rgba(5, 14, 36, 0.58) 50%,
+        rgba(5, 14, 36, 0.72) 100%
+    );
+    pointer-events: none;
+}
+.hero-orb       { opacity: .45; }
+.hero-grid      { opacity: .35; }
+.hero-bg-image  { display: none !important; }
+*/
+
+/* ── Atmospheric orbs (shared by all modes) ── */
+.hero-orb {
+    position: absolute; border-radius: 50%;
+    filter: blur(110px); pointer-events: none; z-index: 1;
+}
+.hero-orb-1 {
+    width: 520px; height: 520px;
+    background: radial-gradient(circle, rgba(29,110,245,.32) 0%, transparent 70%);
+    top: -160px; left: -120px;
+}
+.hero-orb-2 {
+    width: 380px; height: 380px;
+    background: radial-gradient(circle, rgba(6,182,212,.18) 0%, transparent 70%);
+    bottom: -80px; right: -60px;
+}
+.hero-grid {
+    position: absolute; inset: 0; z-index: 1;
+    background-image:
+        linear-gradient(rgba(29,110,245,.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(29,110,245,.06) 1px, transparent 1px);
+    background-size: 52px 52px;
+    mask-image: radial-gradient(ellipse at 40% 50%, black 20%, transparent 75%);
+    pointer-events: none;
+}
+
+/* ── Row: always side-by-side, never stacked ── */
+.hero .hero-row {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    min-height: 0;
+    position: relative; /* ensures z-index:2 on container works */
+}
+
+/* Left column: text */
+.hero-content {
+    flex: 1 1 0;
+    min-width: 0;
+    animation: aFadeDown .65s ease both;
+}
+
+/* Right column: image card */
+.hero-visual {
+    /* Fixed proportional width so image never pushes text */
+    flex: 0 0 48%;
+    max-width: 48%;
+    animation: aFadeLeft .85s ease .15s both;
+}
+
+/* ─── TEXT ELEMENTS ─── */
+.hero-tag {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(6,182,212,.1);
+    border: 1px solid rgba(6,182,212,.3);
+    color: var(--cc-cyan);
+    padding: 6px 7px; border-radius: 30px;
+    font-size: .52rem; font-weight: 500;
+    text-transform: uppercase; letter-spacing: .8px;
+    margin-bottom: 18px;
+}
+.pulse-dot {
+    width: 7px; height: 7px; border-radius: 30%;
+    background: var(--cc-cyan);
+    animation: aPulseDot 2s infinite;
+    flex-shrink: 0;
+}
+.hero-title {
+    font-family: 'Playfair Display', serif;
+    /* clamp: never tiny on mobile, never huge on desktop */
+    font-size: clamp(1.65rem, 4.5vw, 3.4rem);
+    font-weight: 900; color: var(--cc-white);
+    line-height: 1.12; margin-bottom: 18px;
+}
+.hero-title .grad-text {
+    background: var(--cc-grad);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+.hero-sub {
+    font-size: clamp(.78rem, 1.8vw, .98rem);
+    color: var(--cc-muted);
+    line-height: 1.75;
+    margin-bottom: 20px;
+    max-width: 440px;
+}
+.hero-actions {
+    display: flex; flex-wrap: wrap; gap: 10px;
+    margin-bottom: 20px;
+}
+.trust-items {
+    display: flex; flex-wrap: wrap; gap: 14px;
+}
+.trust-badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: .75rem; color: var(--cc-muted); font-weight: 500;
+}
+.trust-badge i { color: var(--cc-blue); font-size: .75rem; }
+
+/* ─── IMAGE CARD + SLIDESHOW ─── */
+.laptop-card-inner {
+    background: var(--cc-card);
+    border: 1px solid var(--cc-border);
+    border-radius: 20px;
+    padding: 14px;
+    box-shadow: 0 24px 64px rgba(0,0,0,.45);
+    position: relative;
+    /* Gradient border glow */
+    outline: 1px solid transparent;
+}
+.laptop-card-inner::before {
+    content: '';
+    position: absolute; inset: -1px;
+    border-radius: 20px;
+    background: linear-gradient(135deg, rgba(29,110,245,.3), rgba(6,182,212,.15), transparent 55%);
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* carosel Slideshow wrapper — fixed aspect ratio, clips images */
+.hero-slideshow {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 6 / 12;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #0a1628;
+}
+
+/* Individual slides */
+.hero-slide {
+    position: absolute; inset: 0;
+    opacity: 0;
+    transition: opacity .9s ease, transform 1s ease;
+    transform: scale(1.04);
+}
+.hero-slide.active {
+    opacity: 1;
+    transform: scale(1);
+    z-index: 1;
+}
+.hero-slide.leaving {
+    opacity: 0;
+    transform: scale(.97);
+    z-index: 0;
+}
+.hero-slide img {
+    width: 100%; height: 100%;
+    object-fit: cover; display: block;
+    border-radius: 12px;
+}
+
+/* Slide progress dots */
+.slide-dots {
+    position: absolute; bottom: 10px; left: 50%;
+    transform: translateX(-50%);
+    display: flex; gap: 6px; z-index: 2;
+}
+.slide-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: rgba(255,255,255,.35);
+    border: none; cursor: pointer; padding: 0;
+    transition: all .35s;
+}
+.slide-dot.active {
+    background: #fff;
+    width: 18px; border-radius: 3px;
+}
+
+/* Slide progress bar — thin line at bottom of image */
+.slide-progress {
+    position: absolute; bottom: 0; left: 0;
+    height: 3px; border-radius: 0 0 12px 12px;
+    background: var(--cc-grad);
+    width: 0%;
+    transition: width linear;
+    z-index: 3;
+}
+
+/* ─── FLOATING BADGES ─── */
+.float-badge {
+    position: absolute;
+    background: rgba(10,22,40,.88);
+    border: 1px solid var(--cc-border);
+    border-radius: 12px; padding: 9px 13px;
+    display: flex; align-items: center; gap: 9px;
+    box-shadow: 0 8px 28px rgba(0,0,0,.35);
+    backdrop-filter: blur(14px);
+    z-index: 4; white-space: nowrap;
+}
+.float-badge strong { display: block; color: var(--cc-white); font-size: .78rem; line-height: 1.2; }
+.float-badge small  { color: var(--cc-muted); font-size: .66rem; }
+
+.fb-1 {
+    top: -14px; left: -14px;
+    animation: aFloatY 4s ease-in-out infinite;
+}
+.fb-2 {
+    bottom: -14px; right: -10px;
+    animation: aFloatY 4s ease-in-out infinite 2s;
+}
+
+/* ─── KEYFRAMES ─── */
+@keyframes aFadeDown { from{opacity:0;transform:translateY(-18px)} to{opacity:1;transform:translateY(0)} }
+@keyframes aFadeLeft { from{opacity:0;transform:translateX(28px)}  to{opacity:1;transform:translateX(0)} }
+@keyframes aPulseDot { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.35;transform:scale(.55)} }
+@keyframes aFloatY   { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-7px)} }
+
+/* ============================================================
+   RESPONSIVE — mobile: tighter, smaller image
+============================================================ */
+
+/* Tablet: shrink image column a touch */
+@media (max-width: 991.98px) {
+    .hero { padding: 44px 0 40px; }
+    .hero .hero-row { gap: 22px; }
+    .hero-visual { flex: 0 0 44%; max-width: 44%; }
+    .hero-title  { font-size: clamp(1.45rem, 4vw, 2.2rem); }
+    .hero-sub    { font-size: .82rem; }
+    .laptop-card-inner { padding: 10px; border-radius: 16px; }
+    .float-badge { padding: 7px 10px; gap: 6px; }
+    .float-badge strong { font-size: .7rem; }
+    .float-badge small  { font-size: .6rem; }
+    .fb-1 { top: -10px; left: -8px; }
+    .fb-2 { bottom: -10px; right: -6px; }
+}
+
+/* Mobile: tighter — image must stay beside text */
+@media (max-width: 767.98px) {
+    .hero { padding: 36px 0 32px; }
+    .hero .hero-row { gap: 14px; align-items: center; }
+
+    /* Slightly larger text share, smaller image share */
+    .hero-content { flex: 1 1 0; }
+    .hero-visual  { flex: 0 0 48%; max-width: 48%; }
+
+    .hero-tag  { font-size: .62rem; padding: 5px 5px; margin-bottom: 10px; }
+    .hero-title { font-size: clamp(1.1rem, 5.5vw, 1.6rem); margin-bottom: 8px; }
+    .hero-sub   { font-size: .72rem; line-height: 1.65; margin-bottom: 14px; display: none; /* hide sub on very small to keep hero compact */ }
+    .hero-actions { gap: 8px; margin-bottom: 12px; }
+    .hero-actions .btn-cc-primary,
+    .hero-actions .btn-cc-outline {
+        padding: 9px 16px; font-size: .76rem; border-radius: 9px;
+    }
+    .trust-items { gap: 10px; }
+    .trust-badge { font-size: .68rem; }
+
+    .laptop-card-inner { padding: 8px; border-radius: 14px; }
+    .hero-slideshow { border-radius: 8px; }
+    .hero-slide img { border-radius: 8px; }
+
+    /* Badges too large on mobile — shrink */
+    .float-badge { padding: 6px 9px; gap: 5px; border-radius: 9px; }
+    .float-badge i { font-size: .8rem !important; }
+    .float-badge strong { font-size: .62rem; }
+    .float-badge small  { display: none; }
+    .fb-1 { top: -8px; left: -6px; }
+    .fb-2 { bottom: -8px; right: -4px; }
+    .slide-dots { bottom: 7px; gap: 4px; }
+    .slide-dot  { width: 5px; height: 5px; }
+    .slide-dot.active { width: 14px; }
+}
+
+/* Very small phones (< 380px) */
+@media (max-width: 399px) {
+    .hero-visual { flex: 0 0 36%; max-width: 36%; }
+    .float-badge { display: none; } /* hide entirely on tiny screens */
+    .hero-title  { font-size: 1rem; }
+}

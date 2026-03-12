@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services | Chedders Computer – chedderscomputer.store</title>
+    <meta name="description" content="Chedders Computer services – laptop sales, bulk corporate orders, expert consultation, warranty support, and nationwide delivery across Nigeria.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/style.css" rel="stylesheet">
+
+    <style>
+    /* ── Services page extras ── */
+    .service-card {
+        background: var(--cc-card);
+        border: 1px solid var(--cc-border);
+        border-radius: var(--cc-radius);
+        padding: 36px 30px;
+        transition: all .3s; height: 100%;
+        display: flex; flex-direction: column;
+    }
+    .service-card:hover {
+        border-color: rgba(29,110,245,.4);
+        transform: translateY(-4px);
+        box-shadow: 0 0 32px rgba(29,110,245,.1);
+    }
+    .service-icon-wrap {
+        width: 60px; height: 60px;
+        background: rgba(29,110,245,.1);
+        border: 1px solid rgba(29,110,245,.22);
+        border-radius: 14px;
+        display: flex; align-items: center; justify-content: center;
+        font-size: 1.4rem; color: var(--cc-blue-lt);
+        margin-bottom: 20px; flex-shrink: 0;
+    }
+    .service-card h3 {
+        font-family: 'Playfair Display', serif;
+        font-size: 1.15rem; font-weight: 700; color: var(--cc-white); margin-bottom: 10px;
+    }
+    .service-card > p { color: var(--cc-muted); font-size: .9rem; line-height: 1.8; margin-bottom: 18px; }
+    .service-list { list-style: none; padding: 0; margin: 0 0 24px; flex-grow: 1; }
+    .service-list li {
+        display: flex; align-items: flex-start; gap: 8px;
+        color: var(--cc-muted); font-size: .85rem; margin-bottom: 8px;
+    }
+    .service-list li i { color: var(--cc-cyan); font-size: .75rem; margin-top: 4px; flex-shrink: 0; }
+
+    /* Process steps */
+    .process-step {
+        background: var(--cc-card);
+        border: 1px solid var(--cc-border);
+        border-radius: var(--cc-radius);
+        padding: 32px 24px; text-align: center;
+        position: relative; height: 100%;
+        transition: all .3s;
+    }
+    .process-step:hover { border-color: rgba(29,110,245,.4); transform: translateY(-4px); }
+    .step-num {
+        font-family: 'DM Mono', monospace;
+        font-size: .72rem; font-weight: 700;
+        color: var(--cc-blue-lt); letter-spacing: 1px;
+        margin-bottom: 14px; display: block;
+    }
+    .step-icon {
+        width: 56px; height: 56px; margin: 0 auto 16px;
+        background: var(--cc-grad);
+        border-radius: 14px;
+        display: flex; align-items: center; justify-content: center;
+        font-size: 1.3rem; color: #fff;
+    }
+    .process-step h4 {
+        font-family: 'Playfair Display', serif;
+        font-size: 1rem; font-weight: 700; color: var(--cc-white); margin-bottom: 8px;
+    }
+    .process-step p { color: var(--cc-muted); font-size: .86rem; line-height: 1.7; margin: 0; }
+
+    /* connector arrow between steps */
+    .step-arrow {
+        display: flex; align-items: center; justify-content: center;
+        color: var(--cc-border); font-size: 1.2rem; padding-top: 20px;
+    }
+    @media (max-width: 991.98px) { .step-arrow { display: none; } }
+
+    .services-cta {
+        background: linear-gradient(135deg, #0f2d6e 0%, #0a1f4e 100%);
+        position: relative; overflow: hidden;
+    }
+    .services-cta::before {
+        content: '';
+        position: absolute; inset: 0;
+        background: radial-gradient(ellipse at center, rgba(29,110,245,.2) 0%, transparent 65%);
+    }
+    </style>
+</head>
+<body>
+
+<!-- LOADER -->
+<div id="cc-loader">
+    <div class="loader-brand mb-3">Chedders<span>Computer</span></div>
+    <div class="loader-dots">
+        <div class="loader-dot"></div>
+        <div class="loader-dot"></div>
+        <div class="loader-dot"></div>
+    </div>
+</div>
+
+<!-- ============================================================
+     TOPBAR
+============================================================ -->
+<div class="cc-topbar d-none d-md-block">
+    <div class="container-xxl">
+        <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
+            <div class="d-flex gap-4 flex-wrap">
+                <span><i class="fas fa-map-marker-alt topbar-icon me-1"></i> 10 simbiat, abiola way, computer village ikeja beside zenith bank, Lagos Nigeria</span>
+                <span><i class="fas fa-phone-alt topbar-icon me-1"></i><a href="tel:+2349160006406">+234 916 000 6406</a></span>
+                <span><i class="fas fa-envelope topbar-icon me-1"></i><a href="mailto:support@chedderscomputer.store">support@chedderscomputer.store</a></span>
+            </div>
+            <div class="topbar-social d-flex gap-2">
+                <a href="https://www.facebook.com/share/17CfgRLadA/" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.instagram.com/chedderscomputer?igsh=Z2xjYmQ4OTV1MnI2" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" aria-label="Tiktok"><i class="fab fa-tiktok"></i></a>
+                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- NAVBAR -->
+<nav class="cc-navbar navbar navbar-expand-lg">
+    <div class="container-xxl">
+        <a href="../index.html" class="navbar-brand d-flex align-items-center gap-2 me-lg-4">
+            <div class="brand-icon"><i class="fas fa-laptop"></i></div>
+            <div>
+                <div class="brand-name">Chedders<span>Computer</span></div>
+                <div class="brand-domain">chedderscomputer.store</div>
+            </div>
+        </a>
+        <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#ccNav" aria-controls="ccNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="toggler-bar"></span><span class="toggler-bar"></span><span class="toggler-bar"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="ccNav">
+            <ul class="navbar-nav mx-auto gap-1">
+                <li class="nav-item"><a href="../index.html"  class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="about.html"    class="nav-link">About</a></li>
+                <li class="nav-item"><a href="services.html" class="nav-link active">Services</a></li>
+                <li class="nav-item"><a href="blog.html"     class="nav-link">Blog</a></li>
+                <li class="nav-item"><a href="contact.html"  class="nav-link">Contact</a></li>
+            </ul>
+            <div class="d-flex align-items-center gap-3 mt-3 mt-lg-0">
+                <a href="shop.html" class="btn-cc-primary"><i class="fas fa-laptop"></i> Shop Now</a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+    <div class="container-xxl">
+        <h1>Our Services</h1>
+        <p>Everything you need, centred around one thing — getting you a genuine laptop with zero hassle.</p>
+        <div class="cc-breadcrumb">
+            <a href="../index.html">Home</a>
+            <i class="fas fa-chevron-right" style="font-size:.6rem"></i>
+            <span>Services</span>
+        </div>
+    </div>
+</div>
+
+<!-- CORE SERVICES -->
+<section class="cc-section">
+    <div class="container-xxl">
+        <div class="row justify-content-center text-center mb-5">
+            <div class="col-lg-7 reveal">
+                <span class="section-tag d-inline-flex mb-2"><i class="fas fa-cog me-2"></i>What We Do</span>
+                <h2 class="section-title mb-2">Services Designed <span>Around You</span></h2>
+                <p class="section-sub mx-auto">We make it simple, transparent, and trustworthy every step of the way.</p>
+            </div>
+        </div>
+        <div class="row g-4">
+            <!-- Laptop Sales -->
+            <div class="col-md-6 col-lg-4 reveal">
+                <div class="service-card">
+                    <div class="service-icon-wrap"><i class="fas fa-laptop"></i></div>
+                    <h3>Laptop Sales</h3>
+                    <p>Browse our curated selection of brand-new, factory-sealed laptops from the world's top manufacturers. Every unit comes with full warranty and a certificate of authenticity.</p>
+                    <ul class="service-list">
+                        <li><i class="fas fa-check"></i> Apple, Dell, Lenovo, ASUS, HP, Microsoft</li>
+                        <li><i class="fas fa-check"></i> Premium, gaming, business &amp; budget</li>
+                        <li><i class="fas fa-check"></i> Full manufacturer warranty included</li>
+                        <li><i class="fas fa-check"></i> Competitive, transparent pricing</li>
+                    </ul>
+                    <a href="shop.html" class="btn-cc-primary justify-content-center">
+                        <i class="fas fa-arrow-right"></i> Browse Laptops
+                    </a>
+                </div>
+            </div>
+            <!-- Corporate -->
+            <div class="col-md-6 col-lg-4 reveal">
+                <div class="service-card" style="border-color:rgba(6,182,212,.18)">
+                    <div class="service-icon-wrap" style="background:rgba(6,182,212,.1);border-color:rgba(6,182,212,.22);color:var(--cc-cyan)"><i class="fas fa-building"></i></div>
+                    <h3>Corporate &amp; Bulk Orders</h3>
+                    <p>Equipping your team? We handle bulk orders for businesses, NGOs, schools, and government agencies with dedicated account management and custom procurement support.</p>
+                    <ul class="service-list">
+                        <li><i class="fas fa-check"></i> Minimum order: 5 units</li>
+                        <li><i class="fas fa-check"></i> Volume discounts available</li>
+                        <li><i class="fas fa-check"></i> Dedicated account manager</li>
+                        <li><i class="fas fa-check"></i> Custom specs and configurations</li>
+                    </ul>
+                    <a href="contact.html" class="btn-cc-outline justify-content-center">Request a Quote</a>
+                </div>
+            </div>
+            <!-- Consultation -->
+            <div class="col-md-6 col-lg-4 reveal">
+                <div class="service-card" style="border-color:rgba(245,158,11,.18)">
+                    <div class="service-icon-wrap" style="background:rgba(245,158,11,.1);border-color:rgba(245,158,11,.22);color:var(--cc-gold)"><i class="fas fa-headset"></i></div>
+                    <h3>Expert Consultation</h3>
+                    <p>Not sure what you need? Our tech specialists will guide you through every option based on your use case, budget, and preferences — with zero sales pressure.</p>
+                    <ul class="service-list">
+                        <li><i class="fas fa-check"></i> Free, no-obligation consultation</li>
+                        <li><i class="fas fa-check"></i> In-store, phone, or WhatsApp</li>
+                        <li><i class="fas fa-check"></i> Spec comparison and advice</li>
+                        <li><i class="fas fa-check"></i> Budget optimisation</li>
+                    </ul>
+                    <a href="contact.html" class="btn-cc-outline justify-content-center">Talk to an Expert</a>
+                </div>
+            </div>
+            <!-- Delivery -->
+            <div class="col-md-6 col-lg-4 reveal">
+                <div class="service-card" style="border-color:rgba(16,185,129,.18)">
+                    <div class="service-icon-wrap" style="background:rgba(16,185,129,.1);border-color:rgba(16,185,129,.22);color:#10b981"><i class="fas fa-truck-fast"></i></div>
+                    <h3>Nationwide Delivery</h3>
+                    <p>We deliver safely to all 36 states in Nigeria. Lagos customers enjoy same-day delivery. Every shipment is insured and tracked from our store to your door.</p>
+                    <ul class="service-list">
+                        <li><i class="fas fa-check"></i> Same-day delivery within Lagos</li>
+                        <li><i class="fas fa-check"></i> 2–3 day delivery nationwide</li>
+                        <li><i class="fas fa-check"></i> Insured and tracked shipments</li>
+                        <li><i class="fas fa-check"></i> Secure, professional packaging</li>
+                    </ul>
+                    <a href="contact.html" class="btn-cc-outline justify-content-center">Check Delivery</a>
+                </div>
+            </div>
+            <!-- Warranty -->
+            <div class="col-md-6 col-lg-4 reveal">
+                <div class="service-card" style="border-color:rgba(139,92,246,.18)">
+                    <div class="service-icon-wrap" style="background:rgba(139,92,246,.1);border-color:rgba(139,92,246,.22);color:#8b5cf6"><i class="fas fa-shield-halved"></i></div>
+                    <h3>Warranty Support</h3>
+                    <p>We help you navigate manufacturer warranty claims from start to finish. If something goes wrong, we're your advocate with the manufacturer — not just a middleman.</p>
+                    <ul class="service-list">
+                        <li><i class="fas fa-check"></i> Warranty claim facilitation</li>
+                        <li><i class="fas fa-check"></i> Direct manufacturer relationships</li>
+                        <li><i class="fas fa-check"></i> Post-purchase technical advice</li>
+                        <li><i class="fas fa-check"></i> Replacement coordination</li>
+                    </ul>
+                    <a href="contact.html" class="btn-cc-outline justify-content-center">Get Warranty Help</a>
+                </div>
+            </div>
+            <!-- Trade-In -->
+            <div class="col-md-6 col-lg-4 reveal">
+                <div class="service-card" style="border-color:rgba(236,72,153,.18)">
+                    <div class="service-icon-wrap" style="background:rgba(236,72,153,.1);border-color:rgba(236,72,153,.22);color:#ec4899"><i class="fas fa-exchange-alt"></i></div>
+                    <h3>Trade-In Programme</h3>
+                    <p>Upgrading? Get a fair assessment for your old laptop and offset it against your new purchase. No-haggle valuations, same-day processing.</p>
+                    <ul class="service-list">
+                        <li><i class="fas fa-check"></i> Fair market valuations</li>
+                        <li><i class="fas fa-check"></i> Instant credit toward new purchase</li>
+                        <li><i class="fas fa-check"></i> All brands and conditions assessed</li>
+                        <li><i class="fas fa-check"></i> Transparent process</li>
+                    </ul>
+                    <a href="contact.html" class="btn-cc-outline justify-content-center">Get a Trade-In Quote</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="cc-section cc-section-alt">
+    <div class="container-xxl">
+        <div class="row justify-content-center text-center mb-5">
+            <div class="col-lg-7 reveal">
+                <span class="section-tag d-inline-flex mb-2"><i class="fas fa-list-ol me-2"></i>How It Works</span>
+                <h2 class="section-title mb-2">From Browse to <span>Doorstep</span></h2>
+                <p class="section-sub mx-auto">Buying from Chedders Computer is simple, safe, and fast.</p>
+            </div>
+        </div>
+        <!-- Steps row with connector arrows on desktop -->
+        <div class="row g-4 align-items-stretch">
+            <div class="col-6 col-lg reveal">
+                <div class="process-step">
+                    <span class="step-num">STEP 01</span>
+                    <div class="step-icon"><i class="fas fa-search"></i></div>
+                    <h4>Browse &amp; Choose</h4>
+                    <p>Explore our shop or talk to our team. Filter by brand, category, price, or use case.</p>
+                </div>
+            </div>
+            <div class="col-auto d-none d-lg-flex step-arrow"><i class="fas fa-chevron-right"></i></div>
+            <div class="col-6 col-lg reveal">
+                <div class="process-step">
+                    <span class="step-num">STEP 02</span>
+                    <div class="step-icon"><i class="fas fa-shopping-cart"></i></div>
+                    <h4>Order &amp; Pay</h4>
+                    <p>Add to cart and check out securely. Pay by card, bank transfer, USSD, or crypto.</p>
+                </div>
+            </div>
+            <div class="col-auto d-none d-lg-flex step-arrow"><i class="fas fa-chevron-right"></i></div>
+            <div class="col-6 col-lg reveal">
+                <div class="process-step">
+                    <span class="step-num">STEP 03</span>
+                    <div class="step-icon"><i class="fas fa-box"></i></div>
+                    <h4>We Pack It</h4>
+                    <p>Your sealed laptop is carefully packaged with its warranty card and receipt.</p>
+                </div>
+            </div>
+            <div class="col-auto d-none d-lg-flex step-arrow"><i class="fas fa-chevron-right"></i></div>
+            <div class="col-6 col-lg reveal">
+                <div class="process-step">
+                    <span class="step-num">STEP 04</span>
+                    <div class="step-icon"><i class="fas fa-truck"></i></div>
+                    <h4>Delivered to You</h4>
+                    <p>Track your order as it arrives at your door — same day in Lagos or 2–3 days nationwide.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="services-cta cc-section">
+    <div class="container-xxl position-relative text-center" style="z-index:1">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 reveal">
+                <h2 class="cta-title mb-3">Need Help Choosing a Service?</h2>
+                <p style="color:rgba(255,255,255,.7);font-size:1.05rem;margin-bottom:2rem">
+                    Our team is ready to guide you — whether you're buying for yourself, your business, or your school.
+                </p>
+                <div class="d-flex gap-3 justify-content-center flex-wrap">
+                    <a href="shop.html" class="btn-cc-primary" style="padding:13px 32px;font-size:.98rem">
+                        <i class="fas fa-laptop"></i> Shop Laptops
+                    </a>
+                    <a href="contact.html" class="btn-cc-outline" style="padding:11px 30px;font-size:.98rem;color:#fff;border-color:rgba(255,255,255,.35)">
+                        Contact Us
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================
+     FOOTER
+============================================================ -->
+<footer class="cc-footer pt-5">
+    <div class="container-xxl">
+        <div class="row gy-5">
+            <!-- Brand -->
+            <div class="col-lg-4">
+                <div class="d-flex align-items-center gap-2 mb-3">
+                    <div class="brand-icon"><i class="fas fa-laptop"></i></div>
+                    <div>
+                        <div class="footer-brand-name">Chedders<span>Computer</span></div>
+                        <div class="brand-domain">chedderscomputer.store</div>
+                    </div>
+                </div>
+                <p class="footer-about mb-3">
+                    Lagos's trusted destination for 100% brand-new, sealed laptops. From the heart of Lagos Island,
+                    we deliver quality technology to your doorstep across Nigeria.
+                </p>
+                <div class="footer-social d-flex gap-2">
+                    <a href="https://www.facebook.com/share/17CfgRLadA/" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/chedderscomputer?igsh=Z2xjYmQ4OTV1MnI2" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="Tiktok"><i class="fab fa-tiktok"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            <!-- Quick Links -->
+            <div class="col-6 col-lg-2">
+                <h6 class="footer-heading">Quick Links</h6>
+                <ul class="footer-links">
+                    <li><a href="index.html"><i class="fas fa-angle-right"></i> Home</a></li>
+                    <li><a href="pages/about.html"><i class="fas fa-angle-right"></i> About Us</a></li>
+                    <li><a href="pages/services.html"><i class="fas fa-angle-right"></i> Services</a></li>
+                    <li><a href="pages/shop.html"><i class="fas fa-angle-right"></i> Shop</a></li>
+                    <li><a href="pages/blog.html"><i class="fas fa-angle-right"></i> Blog</a></li>
+                    <li><a href="pages/contact.html"><i class="fas fa-angle-right"></i> Contact</a></li>
+                </ul>
+            </div>
+            <!-- Help -->
+            <div class="col-6 col-lg-2">
+                <h6 class="footer-heading">Help</h6>
+                <ul class="footer-links">
+                    <li><a href="pages/faqs.html"><i class="fas fa-angle-right"></i> FAQs</a></li>
+                    <li><a href="pages/shippingpolicy.html"><i class="fas fa-angle-right"></i> Shipping Policy</a></li>
+                    <li><a href="pages/returnpolicy.html"><i class="fas fa-angle-right"></i> Return Policy</a></li>
+                    <li><a href="pages/warranty.html"><i class="fas fa-angle-right"></i> Warranty</a></li>
+                    <li><a href="pages/privacypolicy.html"><i class="fas fa-angle-right"></i> Privacy Policy</a></li>
+                    <li><a href="pages/termsofuse.html"><i class="fas fa-angle-right"></i> Terms of Use</a></li>
+                </ul>
+            </div>
+            <!-- Contact -->
+            <div class="col-lg-4">
+                <h6 class="footer-heading">Contact Us</h6>
+                <div class="footer-contact-item"><i class="fas fa-map-marker-alt"></i><span>No 10 simbiat, abiola way, computer village ikeja beside zenith bank, Lagos Nigeria</span></div>
+                <div class="footer-contact-item"><i class="fas fa-phone-alt"></i><a href="tel:+2349160006406">+234 916 000 6406</a></div>
+                <div class="footer-contact-item"><i class="fas fa-envelope"></i><a href="mailto:hello@chedderscomputer.store">support@chedderscomputer.store</a></div>
+                <div class="footer-contact-item"><i class="fas fa-clock"></i><span>Mon – Sat: 9am – 7pm</span></div>
+            </div>
+        </div>
+
+        <hr style="border-color:var(--cc-border);margin-top:3rem">
+        <div class="footer-bottom d-flex flex-column flex-sm-row align-items-center justify-content-between gap-2">
+            <div>© 2025 <a href="index.html">Chedders Computer</a>. All rights reserved. | chedderscomputer.store</div>
+            <div><i class="fas fa-lock me-1"></i> Secure Shopping</div>
+        </div>
+    </div>
+</footer>
+
+<!-- ============================================================
+     whatsapp-float
+============================================================ -->
+<a href="https://wa.me/2349060006406?text=Hello%20Chedders%20Computers,%20I%20want%20to%20make%20an%20enquiry."
+   target="_blank"
+   class="whatsapp-float">
+   <i class="fab fa-whatsapp"></i>
+</a>
+
+<button class="back-to-top" id="backToTop" aria-label="Back to top">
+    <i class="fas fa-arrow-up"></i>
+</button>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../js/main.js"></script>
+</body>
+</html>

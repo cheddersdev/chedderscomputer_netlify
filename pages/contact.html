@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | Chedders Computer – chedderscomputer.store</title>
+    <meta name="description" content="Get in touch with Chedders Computer. Visit us at BNB Mall, Golf Estate Lagos Island, call +234 916 000 6406, or send a message online.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/style.css" rel="stylesheet">
+
+    <style>
+    /* ── Contact page extras ── */
+
+    /* Info cards */
+    .info-card {
+        background: var(--cc-card);
+        border: 1px solid var(--cc-border);
+        border-radius: var(--cc-radius);
+        padding: 22px 20px;
+        display: flex; align-items: flex-start; gap: 16px;
+        transition: all .3s;
+    }
+    .info-card:hover { border-color: rgba(29,110,245,.4); transform: translateY(-2px); }
+    .info-icon {
+        width: 46px; height: 46px; flex-shrink: 0;
+        background: rgba(29,110,245,.1);
+        border: 1px solid rgba(29,110,245,.2);
+        border-radius: 12px;
+        display: flex; align-items: center; justify-content: center;
+        font-size: 1.1rem; color: var(--cc-blue-lt);
+    }
+    .info-card h5 {
+        font-family: 'Playfair Display', serif;
+        font-size: .95rem; font-weight: 700; color: var(--cc-white); margin-bottom: 4px;
+    }
+    .info-card p { color: var(--cc-muted); font-size: .85rem; line-height: 1.55; margin: 0; }
+    .info-card p a { color: var(--cc-muted); transition: color .2s; }
+    .info-card p a:hover { color: var(--cc-white); }
+    .info-card small { color: var(--cc-muted); font-size: .76rem; }
+
+    /* Contact form */
+    .contact-form-card {
+        background: var(--cc-card);
+        border: 1px solid var(--cc-border);
+        border-radius: 24px; padding: 40px;
+        position: relative; overflow: hidden;
+    }
+    .contact-form-card::before {
+        content: '';
+        position: absolute; top: 0; left: 0; right: 0; height: 4px;
+        background: var(--cc-grad);
+    }
+    .contact-form-card h3 {
+        font-family: 'Playfair Display', serif;
+        font-size: 1.3rem; font-weight: 700; color: var(--cc-white); margin-bottom: 24px;
+    }
+    @media (max-width: 575.98px) { .contact-form-card { padding: 28px 20px; } }
+
+    /* Form inputs */
+    .cc-label { color: var(--cc-muted); font-size: .82rem; font-weight: 600; margin-bottom: 6px; display: block; }
+    .cc-input, .cc-select, .cc-textarea {
+        width: 100%;
+        background: rgba(255,255,255,.04);
+        border: 1px solid var(--cc-border);
+        color: var(--cc-white);
+        border-radius: var(--cc-radius-sm);
+        padding: 11px 16px; font-size: .9rem;
+        font-family: 'DM Sans', sans-serif;
+        outline: none; transition: border-color .2s, box-shadow .2s;
+    }
+    .cc-input:focus, .cc-select:focus, .cc-textarea:focus {
+        border-color: var(--cc-blue);
+        box-shadow: 0 0 0 3px rgba(29,110,245,.15);
+    }
+    .cc-input::placeholder, .cc-textarea::placeholder { color: var(--cc-muted); }
+    .cc-select { appearance: none; cursor: pointer; }
+    .cc-select option { background: var(--cc-dark); color: var(--cc-white); }
+    .cc-textarea { resize: vertical; min-height: 120px; }
+
+    /* Map */
+    .map-wrap {
+        position: relative; height: 340px;
+        border-top: 1px solid var(--cc-border);
+        border-bottom: 1px solid var(--cc-border);
+        overflow: hidden;
+    }
+    .map-wrap iframe { width: 100%; height: 100%; border: none; filter: invert(90%) hue-rotate(180deg); }
+    .map-badge {
+        position: absolute; bottom: 20px; left: 20px; z-index: 10;
+        background: var(--cc-card);
+        border: 1px solid var(--cc-border);
+        border-radius: 14px; padding: 12px 18px;
+        display: flex; align-items: center; gap: 12px;
+        box-shadow: var(--cc-shadow-lg); backdrop-filter: blur(12px);
+    }
+    .map-badge i { color: var(--cc-blue); font-size: 1.1rem; }
+    .map-badge strong { display: block; color: var(--cc-white); font-size: .88rem; }
+    .map-badge span { color: var(--cc-muted); font-size: .76rem; }
+
+    /* FAQ Accordion — override Bootstrap accordion for dark theme */
+    .cc-accordion .accordion-item {
+        background: var(--cc-card);
+        border: 1px solid var(--cc-border) !important;
+        border-radius: var(--cc-radius) !important;
+        margin-bottom: 10px; overflow: hidden;
+    }
+    .cc-accordion .accordion-button {
+        background: var(--cc-card);
+        color: var(--cc-white);
+        font-weight: 600; font-size: .92rem;
+        font-family: 'DM Sans', sans-serif;
+        box-shadow: none; border: none;
+        padding: 18px 22px;
+    }
+    .cc-accordion .accordion-button:not(.collapsed) {
+        background: rgba(29,110,245,.08);
+        color: var(--cc-blue-lt);
+    }
+    .cc-accordion .accordion-button::after {
+        filter: invert(1) brightness(1.5);
+    }
+    .cc-accordion .accordion-button:focus { box-shadow: none; }
+    .cc-accordion .accordion-body {
+        background: var(--cc-card);
+        color: var(--cc-muted);
+        font-size: .88rem; line-height: 1.8;
+        padding: 0 22px 18px;
+        border-top: 1px solid var(--cc-border);
+    }
+    </style>
+</head>
+<body>
+
+<!-- LOADER -->
+<div id="cc-loader">
+    <div class="loader-brand mb-3">Chedders<span>Computer</span></div>
+    <div class="loader-dots">
+        <div class="loader-dot"></div>
+        <div class="loader-dot"></div>
+        <div class="loader-dot"></div>
+    </div>
+</div>
+
+<!-- ============================================================
+     TOPBAR
+============================================================ -->
+<div class="cc-topbar d-none d-md-block">
+    <div class="container-xxl">
+        <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
+            <div class="d-flex gap-4 flex-wrap">
+                <span><i class="fas fa-map-marker-alt topbar-icon me-1"></i> 10 simbiat, abiola way, computer village ikeja beside zenith bank, Lagos Nigeria</span>
+                <span><i class="fas fa-phone-alt topbar-icon me-1"></i><a href="tel:+2349160006406">+234 916 000 6406</a></span>
+                <span><i class="fas fa-envelope topbar-icon me-1"></i><a href="mailto:support@chedderscomputer.store">support@chedderscomputer.store</a></span>
+            </div>
+            <div class="topbar-social d-flex gap-2">
+                <a href="https://www.facebook.com/share/17CfgRLadA/" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.instagram.com/chedderscomputer?igsh=Z2xjYmQ4OTV1MnI2" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" aria-label="Tiktok"><i class="fab fa-tiktok"></i></a>
+                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- NAVBAR -->
+<nav class="cc-navbar navbar navbar-expand-lg">
+    <div class="container-xxl">
+        <a href="../index.html" class="navbar-brand d-flex align-items-center gap-2 me-lg-4">
+            <div class="brand-icon"><i class="fas fa-laptop"></i></div>
+            <div>
+                <div class="brand-name">Chedders<span>Computer</span></div>
+                <div class="brand-domain">chedderscomputer.store</div>
+            </div>
+        </a>
+        <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#ccNav" aria-controls="ccNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="toggler-bar"></span><span class="toggler-bar"></span><span class="toggler-bar"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="ccNav">
+            <ul class="navbar-nav mx-auto gap-1">
+                <li class="nav-item"><a href="../index.html"  class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="about.html"    class="nav-link">About</a></li>
+                <li class="nav-item"><a href="services.html" class="nav-link">Services</a></li>
+                <li class="nav-item"><a href="blog.html"     class="nav-link">Blog</a></li>
+                <li class="nav-item"><a href="contact.html"  class="nav-link active">Contact</a></li>
+            </ul>
+            <div class="d-flex align-items-center gap-3 mt-3 mt-lg-0">
+                <a href="shop.html" class="btn-cc-primary"><i class="fas fa-laptop"></i> Shop Now</a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+    <div class="container-xxl">
+        <h1>Get in Touch</h1>
+        <p>Have a question? Want to order? Need advice? We're here for you.</p>
+        <div class="cc-breadcrumb">
+            <a href="../index.html">Home</a>
+            <i class="fas fa-chevron-right" style="font-size:.6rem"></i>
+            <span>Contact</span>
+        </div>
+    </div>
+</div>
+
+<!-- CONTACT SECTION -->
+<section class="cc-section">
+    <div class="container-xxl">
+        <div class="row gy-5">
+
+            <!-- Left: Info -->
+            <div class="col-lg-5">
+                <span class="section-tag d-inline-flex mb-3 reveal"><i class="fas fa-comments me-2"></i>Contact Details</span>
+                <h2 class="section-title mb-3 reveal">We'd Love to <span>Hear From You</span></h2>
+                <p class="section-sub mb-4 reveal">Whether you're ready to buy, just browsing, or need help choosing — our team is happy to assist with zero pressure.</p>
+
+                <div class="d-flex flex-column gap-3 mb-4">
+                    <div class="info-card reveal">
+                        <div class="info-icon"><i class="fas fa-map-marker-alt"></i></div>
+                        <div>
+                            <h5>Visit Our Store</h5>
+                            <p> 10 simbiat, abiola way, computer village ikeja beside zenith bank, Lagos Nigeria<br>Lagos Island, Lagos, Nigeria</p>
+                            <small>Mon–Sat: 9:00 AM – 7:00 PM</small>
+                        </div>
+                    </div>
+                    <div class="info-card reveal">
+                        <div class="info-icon" style="background:rgba(6,182,212,.1);border-color:rgba(6,182,212,.2);color:var(--cc-cyan)"><i class="fas fa-phone-alt"></i></div>
+                        <div>
+                            <h5>Call or WhatsApp</h5>
+                            <p><a href="tel:+2349160006406">+234 916 000 6406</a></p>
+                            <small>Available during business hours</small>
+                        </div>
+                    </div>
+                    <div class="info-card reveal">
+                        <div class="info-icon" style="background:rgba(245,158,11,.1);border-color:rgba(245,158,11,.2);color:var(--cc-gold)"><i class="fas fa-envelope"></i></div>
+                        <div>
+                            <h5>Email Us</h5>
+                            <p><a href="mailto:hello@chedderscomputer.store">support@chedderscomputer.store</a></p>
+                            <small>Response within 4 business hours</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="reveal">
+                    <p style="color:var(--cc-muted);font-size:.84rem;margin-bottom:12px">Also reach us on social:</p>
+                    <div class="footer-social d-flex gap-2">
+                    <a href="https://www.facebook.com/share/17CfgRLadA/" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/chedderscomputer?igsh=Z2xjYmQ4OTV1MnI2" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="Tiktok"><i class="fab fa-tiktok"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="WhatsApp" style="background:rgba(37,211,102,.15);border-color:rgba(37,211,102,.3);color:#25d366">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right: Form -->
+            <div class="col-lg-6 offset-lg-1 reveal">
+                <div class="contact-form-card">
+                    <h3><i class="fas fa-paper-plane me-2" style="color:var(--cc-blue-lt)"></i>Send Us a Message</h3>
+                    <form id="contactForm" onsubmit="handleContactSubmit(event)">
+                        <div class="row g-3 mb-3">
+                            <div class="col-sm-6">
+                                <label class="cc-label">First Name *</label>
+                                <input type="text" class="cc-input" placeholder="John" required>
+                            </div>
+                            <div class="col-sm-6">
+                                <label class="cc-label">Last Name *</label>
+                                <input type="text" class="cc-input" placeholder="Doe" required>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="cc-label">Email Address *</label>
+                            <input type="email" class="cc-input" placeholder="john@example.com" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="cc-label">Phone Number</label>
+                            <input type="tel" class="cc-input" placeholder="+234 800 000 0000">
+                        </div>
+                        <div class="mb-3">
+                            <label class="cc-label">Subject *</label>
+                            <select class="cc-select" required>
+                                <option value="">Select a topic...</option>
+                                <option>I want to buy a laptop</option>
+                                <option>Bulk / Corporate order enquiry</option>
+                                <option>Product availability question</option>
+                                <option>Warranty or after-sales support</option>
+                                <option>Delivery / shipping question</option>
+                                <option>Trade-in enquiry</option>
+                                <option>Other</option>
+                            </select>
+                        </div>
+                        <div class="mb-4">
+                            <label class="cc-label">Message *</label>
+                            <textarea class="cc-textarea" placeholder="Tell us how we can help..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn-cc-primary w-100 justify-content-center" id="contactSubmitBtn" style="padding:13px">
+                            <i class="fas fa-paper-plane"></i> Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- MAP -->
+<div class="map-wrap">
+    <div class="map-badge">
+        <i class="fas fa-map-marker-alt"></i>
+        <div>
+            <strong>Chedders Computer</strong>
+            <span> 10 simbiat, abiola way, computer village ikeja beside zenith bank, Lagos Nigeria</span>
+        </div>
+    </div>
+    <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3964.9!2d3.4199!3d6.4226!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNsKwMjUnMjEuNCJOIDPCsDI1JzExLjYiRQ!5e0!3m2!1sen!2sng!4v1234567890"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        title="Chedders Computer Location">
+    </iframe>
+</div>
+
+<!-- FAQs — Bootstrap Accordion -->
+<section class="cc-section cc-section-alt">
+    <div class="container-xxl">
+        <div class="row justify-content-center text-center mb-5">
+            <div class="col-lg-7 reveal">
+                <span class="section-tag d-inline-flex mb-2"><i class="fas fa-question-circle me-2"></i>FAQs</span>
+                <h2 class="section-title mb-2">Common <span>Questions</span></h2>
+                <p class="section-sub mx-auto">Quick answers to the questions we get asked most.</p>
+            </div>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-lg-9 reveal">
+                <div class="accordion cc-accordion" id="faqAccordion">
+
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1" aria-expanded="true" aria-controls="faq1">
+                                <i class="fas fa-check-circle me-2" style="color:var(--cc-cyan)"></i> Do you sell refurbished laptops?
+                            </button>
+                        </h2>
+                        <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                Never. Every laptop we sell is 100% brand new, factory-sealed, and sourced from authorised channels. That's our core guarantee and the foundation of everything we do.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2" aria-expanded="false" aria-controls="faq2">
+                                <i class="fas fa-truck me-2" style="color:var(--cc-cyan)"></i> Do you offer delivery outside Lagos?
+                            </button>
+                        </h2>
+                        <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                Yes. We deliver nationwide across all 36 states. Lagos orders are same-day. Nationwide orders arrive in 2–3 business days, fully insured and tracked.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3" aria-expanded="false" aria-controls="faq3">
+                                <i class="fas fa-credit-card me-2" style="color:var(--cc-cyan)"></i> What payment methods do you accept?
+                            </button>
+                        </h2>
+                        <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                We accept bank transfer, debit/credit cards, USSD, and cryptocurrency. You can also pay on delivery within Lagos (for select orders).
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4" aria-expanded="false" aria-controls="faq4">
+                                <i class="fas fa-rotate-left me-2" style="color:var(--cc-cyan)"></i> Can I return a laptop if I change my mind?
+                            </button>
+                        </h2>
+                        <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                Yes, within 7 days of delivery if the product is unused and still in its original sealed packaging. See our full return policy for complete details.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq5" aria-expanded="false" aria-controls="faq5">
+                                <i class="fas fa-calendar-alt me-2" style="color:var(--cc-cyan)"></i> Do you offer instalment plans?
+                            </button>
+                        </h2>
+                        <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                Yes, we have flexible payment plans available. Contact us directly to discuss options tailored to your budget and timeline.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq6" aria-expanded="false" aria-controls="faq6">
+                                <i class="fas fa-boxes me-2" style="color:var(--cc-cyan)"></i> How do I confirm a product is in stock?
+                            </button>
+                        </h2>
+                        <div id="faq6" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                Call or WhatsApp us at +234 916 000 6406 or send a message using the form above. We confirm stock availability within minutes during business hours.
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================
+     FOOTER
+============================================================ -->
+<footer class="cc-footer pt-5">
+    <div class="container-xxl">
+        <div class="row gy-5">
+            <!-- Brand -->
+            <div class="col-lg-4">
+                <div class="d-flex align-items-center gap-2 mb-3">
+                    <div class="brand-icon"><i class="fas fa-laptop"></i></div>
+                    <div>
+                        <div class="footer-brand-name">Chedders<span>Computer</span></div>
+                        <div class="brand-domain">chedderscomputer.store</div>
+                    </div>
+                </div>
+                <p class="footer-about mb-3">
+                    Lagos's trusted destination for 100% brand-new, sealed laptops. From the heart of Lagos Island,
+                    we deliver quality technology to your doorstep across Nigeria.
+                </p>
+                <div class="footer-social d-flex gap-2">
+                    <a href="https://www.facebook.com/share/17CfgRLadA/" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/chedderscomputer?igsh=Z2xjYmQ4OTV1MnI2" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="Tiktok"><i class="fab fa-tiktok"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            <!-- Quick Links -->
+            <div class="col-6 col-lg-2">
+                <h6 class="footer-heading">Quick Links</h6>
+                <ul class="footer-links">
+                    <li><a href="index.html"><i class="fas fa-angle-right"></i> Home</a></li>
+                    <li><a href="pages/about.html"><i class="fas fa-angle-right"></i> About Us</a></li>
+                    <li><a href="pages/services.html"><i class="fas fa-angle-right"></i> Services</a></li>
+                    <li><a href="pages/shop.html"><i class="fas fa-angle-right"></i> Shop</a></li>
+                    <li><a href="pages/blog.html"><i class="fas fa-angle-right"></i> Blog</a></li>
+                    <li><a href="pages/contact.html"><i class="fas fa-angle-right"></i> Contact</a></li>
+                </ul>
+            </div>
+            <!-- Help -->
+            <div class="col-6 col-lg-2">
+                <h6 class="footer-heading">Help</h6>
+                <ul class="footer-links">
+                    <li><a href="pages/faqs.html"><i class="fas fa-angle-right"></i> FAQs</a></li>
+                    <li><a href="pages/shippingpolicy.html"><i class="fas fa-angle-right"></i> Shipping Policy</a></li>
+                    <li><a href="pages/returnpolicy.html"><i class="fas fa-angle-right"></i> Return Policy</a></li>
+                    <li><a href="pages/warranty.html"><i class="fas fa-angle-right"></i> Warranty</a></li>
+                    <li><a href="pages/privacypolicy.html"><i class="fas fa-angle-right"></i> Privacy Policy</a></li>
+                    <li><a href="pages/termsofuse.html"><i class="fas fa-angle-right"></i> Terms of Use</a></li>
+                </ul>
+            </div>
+            <!-- Contact -->
+            <div class="col-lg-4">
+                <h6 class="footer-heading">Contact Us</h6>
+                <div class="footer-contact-item"><i class="fas fa-map-marker-alt"></i><span>No 10 simbiat, abiola way, computer village ikeja beside zenith bank, Lagos Nigeria</span></div>
+                <div class="footer-contact-item"><i class="fas fa-phone-alt"></i><a href="tel:+2349160006406">+234 916 000 6406</a></div>
+                <div class="footer-contact-item"><i class="fas fa-envelope"></i><a href="mailto:hello@chedderscomputer.store">support@chedderscomputer.store</a></div>
+                <div class="footer-contact-item"><i class="fas fa-clock"></i><span>Mon – Sat: 9am – 7pm</span></div>
+            </div>
+        </div>
+
+        <hr style="border-color:var(--cc-border);margin-top:3rem">
+        <div class="footer-bottom d-flex flex-column flex-sm-row align-items-center justify-content-between gap-2">
+            <div>© 2025 <a href="index.html">Chedders Computer</a>. All rights reserved. | chedderscomputer.store</div>
+            <div><i class="fas fa-lock me-1"></i> Secure Shopping</div>
+        </div>
+    </div>
+</footer>
+
+<!-- ============================================================
+     whatsapp-float
+============================================================ -->
+<a href="https://wa.me/2349060006406?text=Hello%20Chedders%20Computers,%20I%20want%20to%20make%20an%20enquiry."
+   target="_blank"
+   class="whatsapp-float">
+   <i class="fab fa-whatsapp"></i>
+</a>
+
+<button class="back-to-top" id="backToTop" aria-label="Back to top">
+    <i class="fas fa-arrow-up"></i>
+</button>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../js/main.js"></script>
+<script>
+function handleContactSubmit(e) {
+    e.preventDefault();
+    var btn = document.getElementById('contactSubmitBtn');
+    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+    btn.disabled = true;
+    setTimeout(function() {
+        btn.innerHTML = '<i class="fas fa-check"></i> Message Sent!';
+        btn.style.background = 'linear-gradient(135deg,#10b981,#059669)';
+        document.getElementById('contactForm').reset();
+        if (window.showToast) showToast('Your message has been sent! We\'ll reply shortly.');
+        setTimeout(function() {
+            btn.innerHTML = '<i class="fas fa-paper-plane"></i> Send Message';
+            btn.style.background = '';
+            btn.disabled = false;
+        }, 4000);
+    }, 1600);
+}
+</script>
+</body>
+</html>
