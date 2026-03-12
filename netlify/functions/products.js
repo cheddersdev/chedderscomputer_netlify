@@ -1,6 +1,6 @@
 /* ============================================================
    CHEDDERS STORE — Netlify Function: products.js
-   Path: .netlify/functions/products.js
+   Path: netlify/functions/products.js
 
    Storage: Netlify Blobs (persistent — survives redeploys)
 
@@ -8,10 +8,10 @@
    POST → handles add / update / delete actions
 
    shop.js fetches from:
-     /.netlify/functions/products  (GET)
+     /netlify/functions/products  (GET)
 
    Admin POSTs to:
-     /.netlify/functions/products  (POST)
+     /netlify/functions/products  (POST)
 ============================================================ */
 
 const { getStore } = require('@netlify/blobs');
@@ -27,30 +27,31 @@ const HEADERS = {
 const BLOB_KEY = 'products';
 
 /* ── Helper: get Blobs store ── */
-function getProductsStore(context) {
+function getProductsStore() {
   return getStore({
-    name: 'chedders-store',
+    name:        'chedders-store',
     consistency: 'strong',
-    ...context,
+    siteID:      process.env.NETLIFY_SITE_ID,
+    token:       process.env.NETLIFY_TOKEN,
   });
 }
 
 /* ── Helper: read products from Blobs ── */
-async function readProducts(context) {
-  const store = getProductsStore(context);
+async function readProducts() {
+  const store = getProductsStore();
   const raw   = await store.get(BLOB_KEY, { type: 'text' });
   if (!raw) return [];
   return JSON.parse(raw);
 }
 
 /* ── Helper: write products to Blobs ── */
-async function writeProducts(products, context) {
-  const store = getProductsStore(context);
+async function writeProducts(products) {
+  const store = getProductsStore();
   await store.set(BLOB_KEY, JSON.stringify(products));
 }
 
 /* ── Main handler ── */
-exports.handler = async function(event, context) {
+exports.handler = async function(event) {
 
   /* Handle preflight */
   if (event.httpMethod === 'OPTIONS') {
@@ -60,7 +61,7 @@ exports.handler = async function(event, context) {
   /* ── GET: return all products ── */
   if (event.httpMethod === 'GET') {
     try {
-      const products = await readProducts(context);
+      const products = await readProducts();
       return {
         statusCode: 200,
         headers: HEADERS,
@@ -87,14 +88,14 @@ exports.handler = async function(event, context) {
     const { action, product, id } = body;
 
     try {
-      let products = await readProducts(context);
+      let products = await readProducts();
 
       /* ── SEED: first time load from products.json data ── */
       if (action === 'seed') {
         if (!Array.isArray(body.products)) {
           return { statusCode: 400, headers: HEADERS, body: JSON.stringify({ error: 'Missing products array' }) };
         }
-        await writeProducts(body.products, context);
+        await writeProducts(body.products);
         return {
           statusCode: 200,
           headers: HEADERS,
@@ -114,7 +115,7 @@ exports.handler = async function(event, context) {
 
         products.push(product);
         products.sort((a, b) => (a.position || 999) - (b.position || 999));
-        await writeProducts(products, context);
+        await writeProducts(products);
         return {
           statusCode: 201,
           headers: HEADERS,
@@ -131,7 +132,7 @@ exports.handler = async function(event, context) {
 
         products[idx] = product;
         products.sort((a, b) => (a.position || 999) - (b.position || 999));
-        await writeProducts(products, context);
+        await writeProducts(products);
         return {
           statusCode: 200,
           headers: HEADERS,
@@ -149,7 +150,7 @@ exports.handler = async function(event, context) {
         if (products.length === before) {
           return { statusCode: 404, headers: HEADERS, body: JSON.stringify({ error: 'Product not found' }) };
         }
-        await writeProducts(products, context);
+        await writeProducts(products);
         return {
           statusCode: 200,
           headers: HEADERS,
